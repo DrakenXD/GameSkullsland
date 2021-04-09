@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ff3cc17682f664da8ff7d72c1b322f, type: 3}
+  m_Name: "po\xE7\xE3o"
+  m_EditorClassIdentifier: 
+  ID: 1
+  name: "po\xE7\xE3o"
+  icon: {fileID: 21300000, guid: 29241eaeea36351418a3495c08305272, type: 3}
+  isDefaultItem: 0
+  MaximunStacks: 2
+  itemtypes: 0
+  LifeRegen: 50
+  FoodRegen: 0
+  ThirstRegen: 0

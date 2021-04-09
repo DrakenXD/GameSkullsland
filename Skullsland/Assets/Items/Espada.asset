@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ff3cc17682f664da8ff7d72c1b322f, type: 3}
+  m_Name: Espada
+  m_EditorClassIdentifier: 
+  ID: 4
+  name: Espada de Madeira
+  icon: {fileID: 21300000, guid: b2f6d3cd95550bc42acc1866f1b38dbc, type: 3}
+  isDefaultItem: 0
+  MaximunStacks: 4
+  itemtypes: 2
+  LifeRegen: 0
+  FoodRegen: 0
+  ThirstRegen: 0
