@@ -1,1 +1,1 @@
-# GameSkullsland
+# Skullsland
