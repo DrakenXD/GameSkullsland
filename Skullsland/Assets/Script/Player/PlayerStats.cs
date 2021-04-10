@@ -5,28 +5,42 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public int id;
-    [Header("Stats Player")]
+    
+    [Header("Max Stats")]
     public int maxlife;
     public int maxdamage;
     public float maxspeed;
+    public float maxrun;
     public int maxfood;
     public int maxthirst;
     public int maxenergy;
 
-    public static int life;
-    public static int damage;
-    public static float speed;
-    public static int food;
-    public static int thirst;
-    public static int energy;
+    [Header("Update Stats")]
+    public int life;
+    public int damage;
+    public float speed;
+    public float run;
+    public int food;
+    public int thirst;
+    public int energy;
 
 
-  
+    public static PlayerStats instance;
+
     private void Awake()
+    {
+        if (instance==null)
+        {
+            instance = this;
+        }
+    }
+
+    private void Start()
     {
         life = maxlife;
         damage = maxdamage;
         speed = maxspeed;
+        run = maxrun;
         food = maxfood;
         thirst = maxthirst;
         energy = maxenergy;

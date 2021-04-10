@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public int AmountRestoreLife;
     public float TimeRestoreLife;
     private float T_R_L;
+    
     [Header("Restore Energy Move Or Stop")]
     public int M_LostAmountEnergy;
     public int S_AmountRestoredEnergy;
@@ -20,6 +21,7 @@ public class GameController : MonoBehaviour
     private float M_TT;
     public float M_timeEnergy;
     private float M_TE;
+
     [Header("Time Player Stopped")]
     public float S_timefood;
     private float S_TF;
@@ -44,6 +46,7 @@ public class GameController : MonoBehaviour
         M_TF = M_timefood;
         M_TT = M_timethirst;
         M_TE = M_timeEnergy;
+
         //parado
         S_TF = S_timefood;
         S_TT = S_timethirst;
@@ -67,7 +70,7 @@ public class GameController : MonoBehaviour
         if (M_TF <= 0)
         {
 
-            PlayerStats.food--;
+            PlayerStats.instance.food--;
             
 
             M_TF = M_timefood;
@@ -76,7 +79,7 @@ public class GameController : MonoBehaviour
         if (M_TT <= 0)
         {
 
-            PlayerStats.thirst--;
+            PlayerStats.instance.thirst--;
 
 
             M_TT = M_timethirst;
@@ -87,7 +90,7 @@ public class GameController : MonoBehaviour
         if (S_TF <= 0)
         {
 
-            PlayerStats.food--;
+            PlayerStats.instance.food--;
 
 
             S_TF = S_timefood;
@@ -96,7 +99,7 @@ public class GameController : MonoBehaviour
         if (S_TT <= 0)
         {
 
-            PlayerStats.thirst--;
+            PlayerStats.instance.thirst--;
 
 
             S_TT = S_timethirst;
@@ -105,12 +108,19 @@ public class GameController : MonoBehaviour
       
 
         //contando o tempo enquanto se move
-        if (PlayerController.ismoving)
+        if (PlayerController.IsWalking )
         {
 
             M_TF -= Time.deltaTime;
             M_TT -= Time.deltaTime;
             M_TE -= Time.deltaTime;
+
+        }
+        else if (PlayerController.IsRunning)
+        {
+            M_TF -= Time.deltaTime * 1.5f;
+            M_TT -= Time.deltaTime * 1.5f;
+            M_TE -= 0.2f;
 
         }
         else
@@ -119,21 +129,21 @@ public class GameController : MonoBehaviour
             S_TT -= Time.deltaTime;
             S_TE -= Time.deltaTime;
         }
-
+       
 
 
     }
 
     private void Life()
     {
-        if (PlayerStats.life < stats.maxlife)
+        if (PlayerStats.instance.life < stats.maxlife)
         {
             if (T_R_L <= 0)
             {
-                PlayerStats.life += AmountRestoreLife;
+                PlayerStats.instance.life += AmountRestoreLife;
                 
-                PlayerStats.food--;
-                PlayerStats.thirst--;
+                PlayerStats.instance.food--;
+                PlayerStats.instance.thirst--;
 
                 T_R_L = TimeRestoreLife;
             }
@@ -146,19 +156,19 @@ public class GameController : MonoBehaviour
     private void Energy()
     {
 
-        if (M_TE <= 0 && PlayerStats.food > 0 && PlayerStats.thirst > 0)
+        if (M_TE <= 0 && PlayerStats.instance.food > 0 && PlayerStats.instance.thirst > 0)
         {
 
-            PlayerStats.energy -= M_LostAmountEnergy;
+            PlayerStats.instance.energy -= M_LostAmountEnergy;
 
 
             M_TE = M_timeEnergy;
 
         }
-        if (S_TE <= 0 && PlayerStats.food > 0 && PlayerStats.thirst > 0)
+        if (S_TE <= 0 && PlayerStats.instance.food > 0 && PlayerStats.instance.thirst > 0)
         {
 
-            PlayerStats.energy += S_AmountRestoredEnergy;
+            PlayerStats.instance.energy += S_AmountRestoredEnergy;
 
 
             S_TE = S_timeEnergy;

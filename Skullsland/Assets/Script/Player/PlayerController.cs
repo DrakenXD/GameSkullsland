@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     public float rotationspeed;
     private float lastAngle;
     private float updateAngle;
-    public static bool ismoving;
+    public static bool IsWalking;
+    public static bool IsRunning;
 
     [Header("GroundCheck")]
     public Transform groundCheck;
@@ -33,19 +34,24 @@ public class PlayerController : MonoBehaviour
     public float TimeAttack;
     private float T_Attack;
 
+
+
     private Rigidbody rb;
-    public bool test;
+    private Animator anim;
+   
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+   
 
+        rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        test = GroundCheck();
+       
 
 
         MoveInput();
@@ -64,13 +70,13 @@ public class PlayerController : MonoBehaviour
     {
         float i = Input.GetAxis("Fire1");
 
-        if (Input.GetKey(KeyCode.Mouse0) || i==1)
+        if (Input.GetKey(KeyCode.Mouse0) && PlayerStats.instance.energy > 0 || i == 1 && PlayerStats.instance.energy > 0)
         {
             T_Attack -= Time.deltaTime;
             if (T_Attack<=0)
             {
                 T_Attack = TimeAttack;
-                PlayerStats.energy--;
+                PlayerStats.instance.energy--;
                 Attack();
                 isAttack = true;
             }
@@ -82,6 +88,7 @@ public class PlayerController : MonoBehaviour
             isAttack = false;
         }
     }
+
  
     private void Gravity()
     {
@@ -111,33 +118,47 @@ public class PlayerController : MonoBehaviour
         move.x = Input.GetAxisRaw("Horizontal");
         move.z = Input.GetAxisRaw("Vertical");
 
-        rb.velocity = move * PlayerStats.speed;
+        float velocity=0;
 
-        if (move.x != 0 || move.z != 0)
+        
+        
+
+        if (Input.GetKey(KeyCode.LeftShift) && PlayerStats.instance.energy > 0 || Input.GetAxis("Run") >=1 && PlayerStats.instance.energy > 0)
         {
-            ismoving = true;
+            velocity = PlayerStats.instance.run;
             
-        }
-        else
-        {
-            ismoving = false;
-        }
-    }
-
-    IEnumerator SetTimeLight()
-    {
-        if (!TGSky.isNight)
-        {
-            yield return new WaitForSeconds(2f);
-            light.SetActive(false);
+            IsRunning = true;
+          
 
         }
         else
         {
-            yield return new WaitForSeconds(2f);
-            light.SetActive(true);
+            velocity = PlayerStats.instance.speed;
+
+            IsRunning = false;
+
         }
+        
+        
+        
+
+        if (move.x != 0 && !IsRunning || move.z != 0 && !IsRunning)
+        {
+            IsWalking = true;
+
+        }
+        else
+        {
+            IsWalking = false;
+        }
+
+        rb.velocity = move * velocity;
+
+        anim.SetBool("IsRunning", IsRunning);
+        anim.SetBool("IsMoving", IsWalking);
     }
+
+
     private void Setlight()
     {
         if (!TGSky.isNight)
@@ -190,6 +211,8 @@ public class PlayerController : MonoBehaviour
                 Debug.DrawLine(cameraray.origin, pointToLook, Color.blue);
 
                 transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+                
+                
             }
         }
 
@@ -202,7 +225,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-        PlayerStats.life -= dmg;
+        PlayerStats.instance.life -= dmg;
     }
     void Attack()
     {
@@ -217,7 +240,7 @@ public class PlayerController : MonoBehaviour
             }
             if (hit.CompareTag("Enemy"))
             {
-                hit.gameObject.GetComponent<EnemyController>().TakeDamage(1);
+                hit.gameObject.GetComponent<EnemyController>().TakeDamage(PlayerStats.instance.damage);
             }
             
         }

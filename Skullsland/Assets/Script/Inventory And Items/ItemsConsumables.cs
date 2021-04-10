@@ -14,9 +14,9 @@ public class ItemsConsumables : Item
     public override void Use()
     {
         base.Use();
-        PlayerStats.life += LifeRegen;
-        PlayerStats.food += FoodRegen;
-        PlayerStats.thirst += ThirstRegen;
+        PlayerStats.instance.life += LifeRegen;
+        PlayerStats.instance.food += FoodRegen;
+        PlayerStats.instance.thirst += ThirstRegen;
         PlayerUI.instance.UpdateUI();
     }
 }

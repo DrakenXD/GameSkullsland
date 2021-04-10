@@ -170,9 +170,9 @@ GameObject:
   - component: {fileID: 7495399824863746182}
   - component: {fileID: 1638908259736883486}
   - component: {fileID: 919132148468473229}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: "Ma\xE7a"
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

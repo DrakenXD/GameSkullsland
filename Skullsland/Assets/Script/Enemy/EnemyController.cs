@@ -147,6 +147,7 @@ public class EnemyController : MonoBehaviour
     {
         if (Life<=0)
         {
+            Life = 0;
             return true;
         }
         return false;
