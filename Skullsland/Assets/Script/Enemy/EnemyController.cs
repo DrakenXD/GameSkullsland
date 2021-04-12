@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 public class EnemyController : MonoBehaviour
 {
     [Header("Stats")]
-    public float Life;
+    public float maxLife;
+    protected float Life;
     public int damage;
 
+    [Header("Bar Image")]
+    public Image UI_Life;
     [Header("Attack")]
     public float timeAttack;
     protected float T_A;
@@ -33,6 +37,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        Life = maxLife;
         T_A = timeAttack;
 
         rdDrop = Random.Range(1, MaxAmountDrop);
@@ -166,7 +171,9 @@ public class EnemyController : MonoBehaviour
     }
     public virtual void TakeDamage(int dmg)
     {
-        Life -= dmg;   
+        
+        Life -= dmg;
+        UI_Life.fillAmount = Life / maxLife;
     }
     
     public virtual void FollowTarget()

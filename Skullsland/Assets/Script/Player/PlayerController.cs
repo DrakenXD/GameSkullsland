@@ -72,21 +72,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) && PlayerStats.instance.energy > 0 || i == 1 && PlayerStats.instance.energy > 0)
         {
-            T_Attack -= Time.deltaTime;
-            if (T_Attack<=0)
-            {
-                T_Attack = TimeAttack;
-                PlayerStats.instance.energy--;
-                Attack();
-                isAttack = true;
-            }
+            
+            anim.SetBool("IsAttaking", true);
+            isAttack = true;
+           
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Joystick1Button5))
-        {
-            T_Attack = 0;
-            isAttack = false;
-        }
+        
     }
 
  
@@ -227,25 +219,39 @@ public class PlayerController : MonoBehaviour
     {
         PlayerStats.instance.life -= dmg;
     }
-    void Attack()
+    public void Attack()
     {
-
-        Collider[] hitInfo = Physics.OverlapSphere(Attackpoint.position,A_radius);
+        PlayerStats.instance.energy--;
+        Collider[] hitInfo = Physics.OverlapSphere(Attackpoint.position, A_radius);
         foreach (Collider hit in hitInfo)
         {
             if (hit.CompareTag("Object"))
             {
                 hit.gameObject.GetComponent<ObjectsController>().TakeDamage(1);
-                
+
             }
             if (hit.CompareTag("Enemy"))
             {
                 hit.gameObject.GetComponent<EnemyController>().TakeDamage(PlayerStats.instance.damage);
             }
-            
+            if (hit.CompareTag("Animal"))
+            {
+                hit.gameObject.GetComponent<AnimalController>().TakeDamage(PlayerStats.instance.damage);
+            }
+
         }
+
+        
+        
+       
+
+        
         
 
+    }
+    public void AttackFalse()
+    {
+        anim.SetBool("IsAttaking", false);
     }
     private void OnDrawGizmos()
     {
