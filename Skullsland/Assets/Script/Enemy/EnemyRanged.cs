@@ -33,6 +33,12 @@ public class EnemyRanged : EnemyController
         anim.SetBool("Attack", false);
 
     }
+    public override void DeathAnim()
+    {
+        base.DeathAnim();
+        Death();
+    }
+   
 
     public void Shoot()
     {

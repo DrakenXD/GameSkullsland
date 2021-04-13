@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     public int maxlife;
     public int maxdamage;
     public float maxspeed;
-    public float maxrun;
+    public float maxspeedrun;
     public int maxfood;
     public int maxthirst;
     public int maxenergy;
@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
     public int life;
     public int damage;
     public float speed;
-    public float run;
+    public float speedrun;
     public int food;
     public int thirst;
     public int energy;
@@ -33,18 +33,16 @@ public class PlayerStats : MonoBehaviour
         {
             instance = this;
         }
-    }
 
-    private void Start()
-    {
         life = maxlife;
         damage = maxdamage;
         speed = maxspeed;
-        run = maxrun;
+        speedrun = maxspeedrun;
         food = maxfood;
         thirst = maxthirst;
         energy = maxenergy;
     }
+
 
 
 }

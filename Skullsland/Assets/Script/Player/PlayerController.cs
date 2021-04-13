@@ -68,9 +68,9 @@ public class PlayerController : MonoBehaviour
     }
     void Controller()
     {
-        float i = Input.GetAxis("Fire1");
+        
 
-        if (Input.GetKey(KeyCode.Mouse0) && PlayerStats.instance.energy > 0 || i == 1 && PlayerStats.instance.energy > 0)
+        if (Input.GetKey(KeyCode.Mouse0) && PlayerStats.instance.energy > 0 || Input.GetAxis("Fire1") == 1 && PlayerStats.instance.energy > 0)
         {
             
             anim.SetBool("IsAttaking", true);
@@ -110,18 +110,18 @@ public class PlayerController : MonoBehaviour
         move.x = Input.GetAxisRaw("Horizontal");
         move.z = Input.GetAxisRaw("Vertical");
 
-        float velocity=0;
+        float velocity;
 
         
         
 
         if (Input.GetKey(KeyCode.LeftShift) && PlayerStats.instance.energy > 0 || Input.GetAxis("Run") >=1 && PlayerStats.instance.energy > 0)
         {
-            velocity = PlayerStats.instance.run;
+            velocity = PlayerStats.instance.speed +PlayerStats.instance.speedrun;
             
             IsRunning = true;
-          
 
+            
         }
         else
         {
@@ -222,7 +222,9 @@ public class PlayerController : MonoBehaviour
     public void Attack()
     {
         PlayerStats.instance.energy--;
+        
         Collider[] hitInfo = Physics.OverlapSphere(Attackpoint.position, A_radius);
+        
         foreach (Collider hit in hitInfo)
         {
             if (hit.CompareTag("Object"))
@@ -240,14 +242,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-
-        
-        
-       
-
-        
-        
-
+        anim.SetBool("IsAttaking", false);
     }
     public void AttackFalse()
     {

@@ -24,8 +24,7 @@ public class EnemyController : MonoBehaviour
     public float distance;
     public float MaxRange;
     public float MinRange;
-    protected NavMeshAgent nav;
-    protected Transform targetPlayer;
+
 
     [Header("Drop Item")]
     public GameObject[] items;
@@ -34,6 +33,10 @@ public class EnemyController : MonoBehaviour
     protected int rdDrop;
 
     protected Animator anim;
+    protected NavMeshAgent nav;
+    protected Transform targetPlayer;
+    protected Rigidbody rig;
+    protected Collider coll;
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -44,6 +47,8 @@ public class EnemyController : MonoBehaviour
 
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
+        rig = GetComponent<Rigidbody>();
+        coll = GetComponent<Collider>();
 
         targetPlayer = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -72,7 +77,8 @@ public class EnemyController : MonoBehaviour
                 LoadingAttack();
                 break;
             case EnemyState.Death:
-                Death();
+                DeathAnim();
+                nav.SetDestination(transform.position);
                 break;
             case EnemyState.Attack:
                 Attack();
@@ -134,18 +140,26 @@ public class EnemyController : MonoBehaviour
 
         VerifyState();
     }
+    public virtual void DeathAnim()
+    {
+        coll.enabled = false;
+        rig.isKinematic = true;
+    }
     public virtual void Death()
-    {  
+    {
         while (rdDrop > amountdrop)
         {
             amountdrop++;
             int rdDropItem = Random.Range(0, items.Length);
-            Instantiate(items[rdDropItem],transform.position, Quaternion.identity);
-            
+
+            GameObject clone = Instantiate(items[rdDropItem], new Vector3(transform.position.x,transform.position.y+2f,transform.position.z), Quaternion.identity);
+
+            clone.GetComponent<Rigidbody>().AddForce(Vector3.up * 5f, ForceMode.Impulse);
+
         }
-        if (amountdrop==rdDrop)
+        if (amountdrop == rdDrop)
         {
-            Destroy(gameObject,1f);
+            Destroy(gameObject, 1.1f);
         }
     }
     private bool IsAlive()

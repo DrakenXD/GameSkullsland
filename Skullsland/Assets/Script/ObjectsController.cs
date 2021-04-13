@@ -19,6 +19,7 @@ public class ObjectsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.Rotate(0,Random.Range(-360,360),0);
         amountrandom = Random.Range(1, maxamountdrop);
     }
 

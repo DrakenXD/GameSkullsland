@@ -16,4 +16,12 @@ public class EnemyMelee : EnemyController
     {
         base.Update();
     }
+
+    public override void DeathAnim()
+    {
+        anim.SetBool("IsDeath",true);
+        
+
+    }
+   
 }
