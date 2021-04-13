@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Ground
   - Item
+  - Animal
+  - Sun
   layers:
   - Default
   - TransparentFX

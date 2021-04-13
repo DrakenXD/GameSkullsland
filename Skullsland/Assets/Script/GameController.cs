@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -32,14 +33,20 @@ public class GameController : MonoBehaviour
 
     public static bool usingController;
 
-
+    [Header("Hour")]
+    public Transform ponteiro;
+    public Image fill;
+    private TGSky tgsky;
     private PlayerStats stats;
+    public float test;
     [Header("Esc options")]
     public GameObject esc;
     public bool activate = false;
     // Start is called before the first frame update
     void Start()
     {
+
+        tgsky = GameObject.FindGameObjectWithTag("Sun").GetComponent<TGSky>();
         stats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
 
         //movendo
@@ -57,6 +64,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Hour();
         MouseOrController();
         TimeUpdate();
         PlayerUI.instance.UpdateUI();
@@ -155,25 +163,27 @@ public class GameController : MonoBehaviour
     }
     private void Energy()
     {
-
         if (M_TE <= 0 && PlayerStats.instance.food > 0 && PlayerStats.instance.thirst > 0)
         {
-
             PlayerStats.instance.energy -= M_LostAmountEnergy;
 
-
             M_TE = M_timeEnergy;
-
         }
         if (S_TE <= 0 && PlayerStats.instance.food > 0 && PlayerStats.instance.thirst > 0)
         {
-
             PlayerStats.instance.energy += S_AmountRestoredEnergy;
 
-
             S_TE = S_timeEnergy;
-
         }
+    }
+    void Hour()
+    {
+        
+        //fill.fillAmount = tgsky.hour / 24;
+        //float angle = (tgsky.hour / 24f)*90;
+        
+
+       // ponteiro.Rotate(0,0,-angle);
     }
     public void MouseOrController()
     {
