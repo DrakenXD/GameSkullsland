@@ -177,13 +177,12 @@ public class GameController : MonoBehaviour
         }
     }
     void Hour()
-    {
+    { 
+        fill.fillAmount = tgsky.hour / 24;
+     
+        float angle = fill.fillAmount;
         
-        //fill.fillAmount = tgsky.hour / 24;
-        //float angle = (tgsky.hour / 24f)*90;
-        
-
-       // ponteiro.Rotate(0,0,-angle);
+        ponteiro.Rotate(0,0,-angle);
     }
     public void MouseOrController()
     {
