@@ -192,8 +192,9 @@ public class EnemyController : MonoBehaviour
         
         Life -= dmg;
 
-        GameObject txt = Instantiate(prefabtextdamage, new Vector3(transform.position.x,2,transform.position.z), Quaternion.identity);
+        GameObject txt = Instantiate(prefabtextdamage, new Vector3(transform.position.x,.5f,transform.position.z), Quaternion.identity);
         txt.GetComponent<TextMesh>().text = ""+dmg;
+       
         UI_Life.fillAmount = Life / maxLife;
     }
     

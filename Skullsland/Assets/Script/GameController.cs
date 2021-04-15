@@ -35,10 +35,10 @@ public class GameController : MonoBehaviour
 
     [Header("Hour")]
     public Transform ponteiro;
-    public Image fill;
+
     private TGSky tgsky;
     private PlayerStats stats;
-    public float test;
+
     [Header("Esc options")]
     public GameObject esc;
     public bool activate = false;
@@ -178,11 +178,12 @@ public class GameController : MonoBehaviour
     }
     void Hour()
     { 
-        fill.fillAmount = tgsky.hour / 24;
+      
      
-        float angle = fill.fillAmount;
-        
-        ponteiro.Rotate(0,0,-angle);
+        float angle = (tgsky.hour/24)*360;
+       
+
+        ponteiro.localEulerAngles = new Vector3(0,0,-angle); 
     }
     public void MouseOrController()
     {
