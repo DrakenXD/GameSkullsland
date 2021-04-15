@@ -14,6 +14,7 @@ public class PlayerStats : MonoBehaviour
     public int maxfood;
     public int maxthirst;
     public int maxenergy;
+    
 
     [Header("Update Stats")]
     public int life;
@@ -23,6 +24,11 @@ public class PlayerStats : MonoBehaviour
     public int food;
     public int thirst;
     public int energy;
+
+    [Header("Temperature")]
+    public int maxheating_up;
+    public int maxfreezing;
+    public int Graus;
 
 
     public static PlayerStats instance;

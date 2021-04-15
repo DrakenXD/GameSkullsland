@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.764151, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5019608, g: 0.69411767, b: 0.011764707, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -504,11 +504,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e771507a902da64995b1e01832502c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxLife: 0
+  MaxLife: 10
   normalspeed: 5
   scaredspeed: 10
   state: 0
-  UI_Life: {fileID: 0}
+  UI_Life: {fileID: 1923498196}
+  prefabtextDamage: {fileID: 1246810773481554150, guid: ca866cd04fc85724bac68fa9c424e7cf,
+    type: 3}
   target: {fileID: 6883311679447812452}
   MaxTimeNextTarget: 5
   MinTimeNextTarget: 2

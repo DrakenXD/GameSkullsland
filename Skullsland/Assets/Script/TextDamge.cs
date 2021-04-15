@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class TextDamge : MonoBehaviour
 {
-    
-
-    // Update is called once per frame
-    void LateUpdate()
+    private void Start()
     {
-        transform.LookAt(Camera.main.transform);
+        transform.localEulerAngles = new Vector3(55,25,0);
     }
+
+    
 }

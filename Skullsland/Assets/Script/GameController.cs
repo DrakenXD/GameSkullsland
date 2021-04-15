@@ -1,10 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    public int DAYSTOTAL;
+    public int days;
+    public int dayForWinter;
+    public int WinterDays;
+    public bool winter;
+    public int dayForSummer;
+    public int SummerDays;
+    public bool summer;
+    public bool count;
 
     [Header("Time to restore life")]
     public int AmountRestoreLife;
@@ -31,17 +38,19 @@ public class GameController : MonoBehaviour
     public float S_timeEnergy;
     private float S_TE;
 
-    public static bool usingController;
-
     [Header("Hour")]
     public Transform ponteiro;
 
-    private TGSky tgsky;
-    private PlayerStats stats;
+    [Header("UI Temperature")]
+    public TextMeshProUGUI txtTemperature;
 
     [Header("Esc options")]
     public GameObject esc;
     public bool activate = false;
+
+    public static bool usingController;
+    private TGSky tgsky;
+    private PlayerStats stats;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,8 +76,13 @@ public class GameController : MonoBehaviour
         Hour();
         MouseOrController();
         TimeUpdate();
-        PlayerUI.instance.UpdateUI();
+       
 
+    }
+    private void LateUpdate()
+    {
+        PlayerUI.instance.UpdateUI();
+        Temperature();
     }
     void TimeUpdate()
     {
@@ -137,9 +151,9 @@ public class GameController : MonoBehaviour
             S_TT -= Time.deltaTime;
             S_TE -= Time.deltaTime;
         }
+
+
        
-
-
     }
 
     private void Life()
@@ -175,6 +189,40 @@ public class GameController : MonoBehaviour
 
             S_TE = S_timeEnergy;
         }
+    }
+    private void Temperature()
+    {
+        if (!TGSky.isNight)
+        {
+            
+
+            if (count)
+            {
+                days++;
+                
+                DAYSTOTAL = days;
+
+                count=false;
+            }
+
+            if (days >= dayForWinter && days <= WinterDays)
+            {
+                summer = false;
+                winter = true;
+            }
+            else if (days >= dayForSummer && days <= SummerDays) 
+            {
+                winter=false;
+                summer = true;
+            }
+
+        }
+        else
+        {
+            count = true;
+        }
+
+        //txtTemperature.SetText(PlayerStats.instance.Graus+"°");
     }
     void Hour()
     { 

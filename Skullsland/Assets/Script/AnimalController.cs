@@ -16,7 +16,7 @@ public class AnimalController : MonoBehaviour
 
     [Header("UI")]
     public Image UI_Life;
-
+    public GameObject prefabtextDamage;
 
     [Header("Move Target")]
     public Transform target;
@@ -122,6 +122,11 @@ public class AnimalController : MonoBehaviour
     }
     public virtual void TakeDamage(int dmg)
     {
+
+        GameObject txt = Instantiate(prefabtextDamage, new Vector3(transform.position.x, .5f, transform.position.z), Quaternion.identity);
+        
+        txt.GetComponent<TextMesh>().text = "" + dmg;
+
         Life -= dmg;
 
         UI_Life.fillAmount = Life / MaxLife;

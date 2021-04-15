@@ -157,6 +157,8 @@ MonoBehaviour:
   maxLife: 10
   damage: 2
   UI_Life: {fileID: 2373650971154202449}
+  prefabtextdamage: {fileID: 1246810773481554150, guid: ca866cd04fc85724bac68fa9c424e7cf,
+    type: 3}
   timeAttack: 1
   radiusAttack: 2
   layerAttack:
@@ -322,7 +324,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -484,7 +486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.764151, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5005378, g: 0.6981132, b: 0.009878943, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
