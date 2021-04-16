@@ -177,7 +177,7 @@ public class EnemyController : MonoBehaviour
     }
     public virtual void Attack()
     {
-        Collider[] hit = Physics.OverlapSphere(transform.position, radiusAttack, layerAttack);
+        Collider[] hit = Physics.OverlapSphere(transform.position, radiusAttack,layerAttack);
 
         foreach (Collider hitPlayer in hit)
         {

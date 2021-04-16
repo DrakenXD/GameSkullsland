@@ -7,10 +7,12 @@ public class PlayerController : MonoBehaviour
     public GameObject light;
 
     [Header("Input")]
-    public Vector3 _rotMouse;
+
+    public LayerMask layerHit;
+    private Vector3 _rotMouse;
     private Vector2 _rotStick;
     private Vector3 move;
-    public float rotationspeed;
+    private float rotationspeed;
     private float lastAngle;
     private float updateAngle;
     public static bool IsWalking;
@@ -80,8 +82,6 @@ public class PlayerController : MonoBehaviour
 
         
     }
-
- 
     private void Gravity()
     {
         if (GroundCheck() && move.y < 0) 
@@ -149,8 +149,6 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("IsRunning", IsRunning);
         anim.SetBool("IsMoving", IsWalking);
     }
-
-
     private void Setlight()
     {
         if (!TGSky.isNight)
@@ -165,10 +163,6 @@ public class PlayerController : MonoBehaviour
             light.SetActive(true);
         }
     }
-
-
-
-
     void RotationCharacter()
     {
         //rotação com controle
@@ -194,18 +188,28 @@ public class PlayerController : MonoBehaviour
 
         if (!GameController.usingController)
         {
+        
+
+            
+
             Ray cameraray = cam.ScreenPointToRay(Input.mousePosition);
+           
             Plane groundplane = new Plane(Vector3.up, Vector3.zero);
+           
             float raylenght;
-            if (groundplane.Raycast(cameraray, out raylenght))
+
+
+
+            if (Physics.Raycast(cameraray, out RaycastHit raycast, Mathf.Infinity, layerHit)) 
             {
-                Vector3 pointToLook = cameraray.GetPoint(raylenght);
+               
+                Vector3 pointToLook = cameraray.GetPoint(raycast.distance);
+
                 Debug.DrawLine(cameraray.origin, pointToLook, Color.blue);
 
                 transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
-                
-                
             }
+          
         }
 
 
@@ -214,7 +218,6 @@ public class PlayerController : MonoBehaviour
      
 
     }
-
     public void TakeDamage(int dmg)
     {
         PlayerStats.instance.life -= dmg;
@@ -242,6 +245,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+
         anim.SetBool("IsAttaking", false);
     }
     public void AttackFalse()

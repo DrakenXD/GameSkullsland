@@ -79,11 +79,7 @@ public class GameController : MonoBehaviour
        
 
     }
-    private void LateUpdate()
-    {
-        PlayerUI.instance.UpdateUI();
-        Temperature();
-    }
+    
     void TimeUpdate()
     {
         Life();
@@ -153,7 +149,9 @@ public class GameController : MonoBehaviour
         }
 
 
-       
+        PlayerUI.instance.UpdateUI();
+        Temperature();
+
     }
 
     private void Life()
