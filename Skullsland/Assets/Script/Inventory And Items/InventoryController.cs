@@ -9,7 +9,8 @@ public class InventoryController : MonoBehaviour
     Inventory inventory;
 
     public bool keydown;
-    public int index;
+    public int index=5;
+    public int lastindex;
     public int maxindex;
 
     private Animator anim;
@@ -43,11 +44,13 @@ public class InventoryController : MonoBehaviour
             {
                 usingSlots = false;
                 anim.SetBool("Using", false);
+                slots[index].CloseDescription();
                 time = maxtime;
             }
             else
             {
                 time -= Time.deltaTime;
+                
             }
         }
 
@@ -56,11 +59,24 @@ public class InventoryController : MonoBehaviour
             ChooseSlotJoystick();
             UsingItemSlotJoystick();
             ChooseSlotKeyboardAndScroll();
+            viewingDescription();
         }
     }
 
 
+    void viewingDescription()
+    {
+        if (lastindex!=index )
+        {
+            slots[lastindex].CloseDescription();
 
+            lastindex = index;
+
+            slots[index].OpenDescription();
+        }
+       
+       
+    }
 
     void UpdateUI()
     {
@@ -305,4 +321,7 @@ public class InventoryController : MonoBehaviour
         }
 
     }
+
+
+    
 }

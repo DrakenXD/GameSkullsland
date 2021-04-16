@@ -7089,13 +7089,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7421015151965497800}
+  - component: {fileID: 7022805664073411962}
+  - component: {fileID: 7022805664073411941}
+  - component: {fileID: 7022805664073411940}
+  - component: {fileID: 7022805664073411943}
   - component: {fileID: 7022805664073411942}
   - component: {fileID: 7022805664073411937}
   - component: {fileID: 7022805664073411963}
-  - component: {fileID: 7022805664073411943}
-  - component: {fileID: 7022805664073411940}
-  - component: {fileID: 7022805664073411941}
-  - component: {fileID: 7022805664073411962}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -7127,6 +7127,96 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7022805664073411962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905907908464980850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae62306ab875bcf47988f2f9de84701f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  maxlife: 100
+  maxdamage: 4
+  maxspeed: 7
+  maxspeedrun: 10
+  maxfood: 100
+  maxthirst: 100
+  maxenergy: 100
+  life: 0
+  damage: 0
+  speed: 0
+  speedrun: 0
+  food: 0
+  thirst: 0
+  energy: 0
+  maxheating_up: 40
+  maxfreezing: 0
+  Graus: 0
+--- !u!114 &7022805664073411941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905907908464980850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6054607b491dde64d8a1b968b46f0a23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  I_barLife: {fileID: 0}
+  I_barEnergy: {fileID: 0}
+  I_barThrist: {fileID: 0}
+  I_barFood: {fileID: 0}
+  T_barLife: {fileID: 0}
+  T_barEnergy: {fileID: 0}
+  T_barThrist: {fileID: 0}
+  T_barFood: {fileID: 0}
+--- !u!114 &7022805664073411940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905907908464980850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5180e2f9149736144b26acdbe8a9621f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 3210104613477911395}
+  layerHit:
+    serializedVersion: 2
+    m_Bits: 0
+  groundCheck: {fileID: 3210104612641770027}
+  G_radius: 0.2
+  G_checklayer:
+    serializedVersion: 2
+    m_Bits: 512
+  cam: {fileID: 0}
+  Attackpoint: {fileID: 3210104612304014795}
+  A_radius: 2.5
+  TimeAttack: 0.5
+--- !u!114 &7022805664073411943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905907908464980850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fad24f2f8dded3418a9d076fed33853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  space: 7
+  items: []
+  AmountItens: 
 --- !u!54 &7022805664073411942
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7176,97 +7266,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7022805664073411943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7905907908464980850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fad24f2f8dded3418a9d076fed33853, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  space: 7
-  items: []
-  AmountItens: 
---- !u!114 &7022805664073411940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7905907908464980850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5180e2f9149736144b26acdbe8a9621f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  light: {fileID: 3210104613477911395}
-  layerCast:
-    serializedVersion: 2
-    m_Bits: 0
-  rotationspeed: 0
-  groundCheck: {fileID: 3210104612641770027}
-  G_radius: 0.2
-  G_checklayer:
-    serializedVersion: 2
-    m_Bits: 512
-  cam: {fileID: 0}
-  Attackpoint: {fileID: 3210104612304014795}
-  A_radius: 2.5
-  TimeAttack: 0.5
---- !u!114 &7022805664073411941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7905907908464980850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6054607b491dde64d8a1b968b46f0a23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  I_barLife: {fileID: 0}
-  I_barEnergy: {fileID: 0}
-  I_barThrist: {fileID: 0}
-  I_barFood: {fileID: 0}
-  T_barLife: {fileID: 0}
-  T_barEnergy: {fileID: 0}
-  T_barThrist: {fileID: 0}
-  T_barFood: {fileID: 0}
---- !u!114 &7022805664073411962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7905907908464980850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae62306ab875bcf47988f2f9de84701f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  maxlife: 100
-  maxdamage: 4
-  maxspeed: 7
-  maxspeedrun: 10
-  maxfood: 100
-  maxthirst: 100
-  maxenergy: 100
-  life: 0
-  damage: 0
-  speed: 0
-  speedrun: 0
-  food: 0
-  thirst: 0
-  energy: 0
-  maxheating_up: 40
-  maxfreezing: 0
-  Graus: 0
 --- !u!1 &7958709466065555497
 GameObject:
   m_ObjectHideFlags: 0

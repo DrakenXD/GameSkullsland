@@ -8,7 +8,9 @@ public class Item : ScriptableObject
     public int ID;
     new public string name = "New Item";   // Nome do item
     public Sprite icon = null;             // Item icone
-    public bool isDefaultItem = false;     // é um item defaut?
+    public string description;
+
+    public bool isDefaultItem = false;     
     
     [Range(1,99)]public int MaximunStacks;
     public ItemTypes itemtypes;

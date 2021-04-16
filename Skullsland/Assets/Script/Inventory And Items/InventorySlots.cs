@@ -10,8 +10,10 @@ public class InventorySlots : MonoBehaviour
     public int iDImage;
     Item item;
     public Image icon;
-   
     public TextMeshProUGUI amount;
+    public GameObject panel;
+    public TextMeshProUGUI descriptionItem;
+
     public static int amountItem=0;
 
     private Animator anim;
@@ -28,11 +30,33 @@ public class InventorySlots : MonoBehaviour
 
         icon.sprite = newItem.icon;
         icon.enabled = true;
-        
+
+        descriptionItem.SetText(newItem.description);
+
 
         amount.enabled = true;
         AmountItemStack();
     }
+    
+    public void OpenDescription()
+    {
+        if (item!=null)
+        {
+            panel.SetActive(true);
+            descriptionItem.enabled = true;
+            
+        }
+    }
+    public void CloseDescription()
+    {
+        if (item!=null)
+        {
+            panel.SetActive(false);
+            descriptionItem.enabled = false;
+        }
+
+    }
+
     public void ClearSlot()
     {
         item = null;
@@ -83,4 +107,7 @@ public class InventorySlots : MonoBehaviour
         Inventory.instance.QtdItems(iDImage);
         amount.SetText("" + amountItem);
     }
+
+
+
 }
