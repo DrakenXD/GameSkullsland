@@ -1,8 +1,11 @@
 ﻿using TMPro;
 using UnityEngine;
+using System.Collections;
+
 
 public class GameController : MonoBehaviour
 {
+    [Header("Days")]
     public int DAYSTOTAL;
     public int days;
     public int dayForWinter;
@@ -11,7 +14,7 @@ public class GameController : MonoBehaviour
     public int dayForSummer;
     public int SummerDays;
     public bool summer;
-    public bool count;
+    private bool count;
 
     [Header("Time to restore life")]
     public int AmountRestoreLife;
@@ -39,10 +42,14 @@ public class GameController : MonoBehaviour
     private float S_TE;
 
     [Header("Hour")]
-    public Transform ponteiro;
+    public Transform HourPointer;
 
     [Header("UI Temperature")]
     public TextMeshProUGUI txtTemperature;
+    public Transform GrausPointer;
+    int T_rdValue;
+    bool T_updatevalue;
+    public float T_timerupdate;
 
     [Header("Esc options")]
     public GameObject esc;
@@ -54,6 +61,15 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        txtTemperature.SetText(PlayerStats.instance.Graus + "°");
+        if (PlayerStats.instance.Graus > 0)
+        {
+            GrausPointer.localPosition = new Vector3(PlayerStats.instance.Graus * 2, 0, 0);
+        }
+        else
+        {
+            GrausPointer.localPosition = new Vector3(PlayerStats.instance.Graus * 7, 0, 0);
+        }
 
         tgsky = GameObject.FindGameObjectWithTag("Sun").GetComponent<TGSky>();
         stats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
@@ -188,31 +204,138 @@ public class GameController : MonoBehaviour
             S_TE = S_timeEnergy;
         }
     }
+
+    private void Timer()
+    {
+        
+        if (T_timerupdate>0)
+        {
+           
+            T_timerupdate -= Time.deltaTime;
+            
+        }
+        else 
+        {
+            T_rdValue = Random.Range(0, 101);
+            T_updatevalue = true;
+            T_timerupdate = tgsky.dayMinutesDuration;
+            
+        }
+
+    }
     private void Temperature()
     {
+
+        //contagem de graus
+        if (T_updatevalue)
+        {
+            if (T_rdValue < 51 )
+            {
+
+                if (!summer && !winter)
+                {
+                    if (PlayerStats.instance.Graus > 29)
+                    {
+                        PlayerStats.instance.Graus = 30;
+                    }
+                    else
+                    {
+                        PlayerStats.instance.Graus++;
+                    }
+                }
+                else if (!winter && summer)
+                {
+                    PlayerStats.instance.Graus += 2;
+                }
+
+                if (PlayerStats.instance.Graus > 39)
+                {
+                    PlayerStats.instance.Graus = 40;
+                }
+               
+            }
+            else if(T_rdValue > 51)
+            {
+
+                if (!winter && !summer)
+                {
+                    if (PlayerStats.instance.Graus < 9)
+                    {
+                        PlayerStats.instance.Graus = 10;
+                    }
+                    else
+                    {
+                        PlayerStats.instance.Graus--;
+                    }
+                }
+                else if (winter && !summer)
+                {
+                    PlayerStats.instance.Graus -= 2;
+                }
+               
+                if (PlayerStats.instance.Graus < -9)
+                {
+                    PlayerStats.instance.Graus = -10;
+                }
+                
+            }
+
+         
+
+
+            T_updatevalue = false;
+
+
+
+            if (PlayerStats.instance.Graus > 0)
+            {
+                GrausPointer.localPosition = new Vector3(PlayerStats.instance.Graus * 2, 0, 0);
+            }
+            else
+            {
+                GrausPointer.localPosition = new Vector3(PlayerStats.instance.Graus * 7, 0, 0);
+            }
+
+            txtTemperature.SetText(PlayerStats.instance.Graus + "°");
+        }
+        else
+        {
+            Timer();
+        }
+       
+        //contagem de dias
         if (!TGSky.isNight)
         {
+
             
+
 
             if (count)
             {
                 days++;
                 
-                DAYSTOTAL = days;
+                DAYSTOTAL++;
 
-                count=false;
+
+
+                if (days >= dayForWinter && days <= WinterDays)
+                {
+                    summer = false;
+                    winter = true;
+                }
+                else if (days >= dayForSummer && days <= SummerDays)
+                {
+                    winter = false;
+                    summer = true;
+                }else if (days > SummerDays)
+                {
+                    summer = false;
+                    days = 0;
+                }
+
+                count = false;
             }
 
-            if (days >= dayForWinter && days <= WinterDays)
-            {
-                summer = false;
-                winter = true;
-            }
-            else if (days >= dayForSummer && days <= SummerDays) 
-            {
-                winter=false;
-                summer = true;
-            }
 
         }
         else
@@ -220,7 +343,7 @@ public class GameController : MonoBehaviour
             count = true;
         }
 
-        //txtTemperature.SetText(PlayerStats.instance.Graus+"°");
+        
     }
     void Hour()
     { 
@@ -229,7 +352,7 @@ public class GameController : MonoBehaviour
         float angle = (tgsky.hour/24)*360;
        
 
-        ponteiro.localEulerAngles = new Vector3(0,0,-angle); 
+        HourPointer.localEulerAngles = new Vector3(0,0,-angle); 
     }
     public void MouseOrController()
     {
