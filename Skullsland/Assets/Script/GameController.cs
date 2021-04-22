@@ -16,6 +16,21 @@ public class GameController : MonoBehaviour
     public bool summer;
     private bool count;
 
+    [Header("Max Graus in season + And -")]
+    public int S_GrausPositive;
+    public int S_GrausNegative;
+
+    [Header("Max Graus day normal  + And -")]
+    public int N_GrausPositive;
+    public int N_GrausNegative;
+
+    [Header("Penalty in Cold & Heat")]
+    public float C_speed;
+    public float C_speerun;
+    public int H_useofwater;
+
+
+
     [Header("Time to restore life")]
     public int AmountRestoreLife;
     public float TimeRestoreLife;
@@ -113,7 +128,17 @@ public class GameController : MonoBehaviour
         if (M_TT <= 0)
         {
 
-            PlayerStats.instance.thirst--;
+            if (!summer)
+            {
+                PlayerStats.instance.thirst--;
+            }
+            else
+            {
+                PlayerStats.instance.thirst -= H_useofwater;
+            }
+            
+
+            
 
 
             M_TT = M_timethirst;
@@ -234,9 +259,9 @@ public class GameController : MonoBehaviour
 
                 if (!summer && !winter)
                 {
-                    if (PlayerStats.instance.Graus > 29)
+                    if (PlayerStats.instance.Graus > N_GrausPositive-1)
                     {
-                        PlayerStats.instance.Graus = 30;
+                        PlayerStats.instance.Graus = N_GrausPositive;
                     }
                     else
                     {
@@ -248,9 +273,9 @@ public class GameController : MonoBehaviour
                     PlayerStats.instance.Graus += 2;
                 }
 
-                if (PlayerStats.instance.Graus > 39)
+                if (PlayerStats.instance.Graus > S_GrausPositive-1)
                 {
-                    PlayerStats.instance.Graus = 40;
+                    PlayerStats.instance.Graus = S_GrausPositive;
                 }
                
             }
@@ -259,9 +284,9 @@ public class GameController : MonoBehaviour
 
                 if (!winter && !summer)
                 {
-                    if (PlayerStats.instance.Graus < 9)
+                    if (PlayerStats.instance.Graus < N_GrausNegative-1)
                     {
-                        PlayerStats.instance.Graus = 10;
+                        PlayerStats.instance.Graus = N_GrausNegative;
                     }
                     else
                     {
@@ -273,9 +298,9 @@ public class GameController : MonoBehaviour
                     PlayerStats.instance.Graus -= 2;
                 }
                
-                if (PlayerStats.instance.Graus < -9)
+                if (PlayerStats.instance.Graus < S_GrausNegative+1)
                 {
-                    PlayerStats.instance.Graus = -10;
+                    PlayerStats.instance.Graus = S_GrausNegative;
                 }
                 
             }
@@ -343,6 +368,19 @@ public class GameController : MonoBehaviour
             count = true;
         }
 
+        //Desvantagens para o player ao passar do limite
+        if (PlayerStats.instance.Graus > PlayerStats.instance.maxheat)
+        {
+            //tela em fogo
+            
+
+        }else if (PlayerStats.instance.Graus < PlayerStats.instance.maxcold)
+        {
+           //tela em gelo
+
+            PlayerStats.instance.speed = 5;
+            PlayerStats.instance.speedrun = 8;
+        }
         
     }
     void Hour()

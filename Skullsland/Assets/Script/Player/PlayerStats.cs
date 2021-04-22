@@ -26,8 +26,8 @@ public class PlayerStats : MonoBehaviour
     public int energy;
 
     [Header("Temperature")]
-    public int maxheating_up;
-    public int maxfreezing;
+    public int maxheat;
+    public int maxcold;
     public int Graus;
 
 
