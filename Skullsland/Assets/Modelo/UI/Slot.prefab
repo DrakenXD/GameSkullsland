@@ -255,6 +255,7 @@ MonoBehaviour:
   amount: {fileID: 2762032646192279073}
   panel: {fileID: 3389685005320413267}
   descriptionItem: {fileID: 256670481}
+  prefabitem: {fileID: 0}
 --- !u!95 &5932927187351139302
 Animator:
   serializedVersion: 3

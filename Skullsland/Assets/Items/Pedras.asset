@@ -15,6 +15,9 @@ MonoBehaviour:
   ID: 6
   name: Pedra
   icon: {fileID: 21300000, guid: 2f0c01a29ec37384aaf35babe84b641b, type: 3}
+  description: Usado para criar itens
+  prefabItem: {fileID: 919132149155446097, guid: ea19234307beb2a4bb5fa59e0069d3a9,
+    type: 3}
   isDefaultItem: 0
   MaximunStacks: 26
   itemtypes: 1

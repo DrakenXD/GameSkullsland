@@ -9,7 +9,7 @@ public class Item : ScriptableObject
     new public string name = "New Item";   // Nome do item
     public Sprite icon = null;             // Item icone
     public string description;
-
+    public GameObject prefabItem;
     public bool isDefaultItem = false;     
     
     [Range(1,99)]public int MaximunStacks;

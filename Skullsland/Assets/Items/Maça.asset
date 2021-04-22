@@ -15,6 +15,9 @@ MonoBehaviour:
   ID: 6
   name: "Ma\xE7a"
   icon: {fileID: 21300000, guid: 21a8b6136640fa649b187d75301e1c38, type: 3}
+  description: pode comer
+  prefabItem: {fileID: 919132149155446097, guid: c3a30e6b45c631141b896141a913dbaa,
+    type: 3}
   isDefaultItem: 0
   MaximunStacks: 3
   itemtypes: 0

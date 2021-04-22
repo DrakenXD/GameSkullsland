@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
 
     [Header("Bar Image")]
     public Image UI_Life;
+    public Image UI_Damage;
+    protected bool was_attacked;
 
     [Header("PopUp")]
     public GameObject prefabtextdamage;
@@ -63,6 +65,8 @@ public class EnemyController : MonoBehaviour
     public virtual void Update()
     {
         ControlState();
+
+        if(was_attacked) UIDamageSystem();
     }
 
     public virtual void VerifyState()
@@ -102,9 +106,9 @@ public class EnemyController : MonoBehaviour
         //confere se o player está no raio de attack
         InRadius = Physics.CheckSphere(transform.position,radiusAttack,layerAttack);
 
-        if (IsAlive())
+        if (state == EnemyState.Death)
         {
-            state = EnemyState.Death;
+            Debug.Log("Morreu");
         }
         else
         {
@@ -171,6 +175,7 @@ public class EnemyController : MonoBehaviour
         if (Life<=0)
         {
             Life = 0;
+            state = EnemyState.Death;
             return true;
         }
         return false;
@@ -196,6 +201,23 @@ public class EnemyController : MonoBehaviour
         txt.GetComponent<TextMesh>().text = ""+dmg;
        
         UI_Life.fillAmount = Life / maxLife;
+        was_attacked = true;
+
+        IsAlive();
+    }
+    public void UIDamageSystem()
+    {
+        if (UI_Life.fillAmount < UI_Damage.fillAmount)
+        {
+            UI_Damage.enabled = true;
+            UI_Damage.fillAmount -= 0.015f;
+        }
+        else
+        {
+            UI_Damage.enabled = false;
+            was_attacked = false;
+            UI_Damage.fillAmount = UI_Life.fillAmount;
+        }
     }
     
     public virtual void FollowTarget()

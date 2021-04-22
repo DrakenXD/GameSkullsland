@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     public Transform itemsParent;
-    InventorySlots[] slots;
+    public InventorySlots[] slots;
     Inventory inventory;
 
     public bool keydown;
@@ -60,6 +60,8 @@ public class InventoryController : MonoBehaviour
             UsingItemSlotJoystick();
             ChooseSlotKeyboardAndScroll();
             viewingDescription();
+
+            HandWithObject.instance.ItemInHand(index);
         }
     }
 

@@ -13,7 +13,7 @@ public class InventorySlots : MonoBehaviour
     public TextMeshProUGUI amount;
     public GameObject panel;
     public TextMeshProUGUI descriptionItem;
-
+    public GameObject prefabitem;
     public static int amountItem=0;
 
     private Animator anim;
@@ -30,6 +30,8 @@ public class InventorySlots : MonoBehaviour
 
         icon.sprite = newItem.icon;
         icon.enabled = true;
+
+        prefabitem = newItem.prefabItem;
 
         descriptionItem.SetText(newItem.description);
 
@@ -64,7 +66,9 @@ public class InventorySlots : MonoBehaviour
         icon.sprite = null;
         icon.enabled = false;
 
- 
+        prefabitem = null;
+
+
         amount.enabled = false;
     }
     public void OnRemoveButton()

@@ -18,10 +18,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 941
-    y: -133
-    width: 426
-    height: 1929
+    x: 928
+    y: -254
+    width: 439
+    height: 2050
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,11 +66,10 @@ VisualEffectResource:
       1\n#define VFX_USE_LIFETIME_CURRENT 1\n#define VFX_USE_SCALEX_CURRENT 1\n#define
       VFX_USE_SCALEY_CURRENT 1\n#define VFX_USE_SCALEZ_CURRENT 1\n#define VFX_USE_POSITION_CURRENT
       1\n#define VFX_USE_SIZE_CURRENT 1\n#define VFX_USE_AGE_CURRENT 1\n#define VFX_USE_ALIVE_CURRENT
-      1\n#define VFX_LOCAL_SPACE 1\n#include \"Packages/com.unity.visualeffectgraph/Shaders/RenderPipeline/Universal/VFXDefines.hlsl\"\n\n\r\nCBUFFER_START(parameters)\n   
-      float3 Box_center_d;\n    uint PADDING_0;\nCBUFFER_END\n\nstruct Attributes\n{\n   
-      float3 velocity;\n    uint seed;\n    float lifetime;\n    float scaleX;\n   
-      float scaleY;\n    float scaleZ;\n    float3 position;\n    float size;\n   
-      float age;\n    bool alive;\n};\n\nstruct SourceAttributes\n{\n};\n\n\n\r\n\r\n#define
+      1\n#define VFX_LOCAL_SPACE 1\n#include \"Packages/com.unity.visualeffectgraph/Shaders/RenderPipeline/Universal/VFXDefines.hlsl\"\n\n\r\n\nstruct
+      Attributes\n{\n    float3 velocity;\n    uint seed;\n    float lifetime;\n   
+      float scaleX;\n    float scaleY;\n    float scaleZ;\n    float3 position;\n   
+      float size;\n    float age;\n    bool alive;\n};\n\nstruct SourceAttributes\n{\n};\n\n\n\r\n\r\n#define
       USE_DEAD_LIST (VFX_USE_ALIVE_CURRENT && !HAS_STRIPS)\r\n\r\nRWByteAddressBuffer
       attributeBuffer;\r\nByteAddressBuffer sourceAttributeBuffer;\r\n\r\nCBUFFER_START(initParams)\r\n#if
       !VFX_USE_SPAWNER_FROM_GPU\r\n    uint nbSpawned;\t\t\t\t\t// Numbers of particle
@@ -150,11 +149,11 @@ VisualEffectResource:
       }\n        {\n            SetAttribute_D5151642( /*inout */attributes.scaleX, 
       /*inout */attributes.scaleY,  /*inout */attributes.scaleZ, float3(1, 5, 1));\n       
       }\n        {\n            PositionAABox_0( /*inout */attributes.position, 
-      /*inout */attributes.seed, Box_center_d, float3(100, 1, 100));\n        }\n       
-      {\n            SetAttribute_3278B545( /*inout */attributes.size,  /*inout */attributes.seed,
-      (float)0.00499999989, (float)0.0149999997);\n        }\n        \n\r\n\t\t\r\n#if
-      VFX_USE_ALIVE_CURRENT\r\n        if (attributes.alive)\r\n#endif       \r\n       
-      {\r\n#if USE_DEAD_LIST\r\n\t        uint deadIndex = deadListIn.DecrementCounter();\r\n           
+      /*inout */attributes.seed, float3(0, 0, 0), float3(100, 1, 100));\n       
+      }\n        {\n            SetAttribute_3278B545( /*inout */attributes.size, 
+      /*inout */attributes.seed, (float)0.00499999989, (float)0.0149999997);\n       
+      }\n        \n\r\n\t\t\r\n#if VFX_USE_ALIVE_CURRENT\r\n        if (attributes.alive)\r\n#endif      
+      \r\n        {\r\n#if USE_DEAD_LIST\r\n\t        uint deadIndex = deadListIn.DecrementCounter();\r\n           
       uint index = deadListIn[deadIndex];\r\n#else\r\n            uint index = particleIndex;\r\n#endif\r\n           
       attributeBuffer.Store3((index * 0x4 + 0x0) << 2,asuint(attributes.velocity));\n           
       attributeBuffer.Store((index * 0x1 + 0x30E00) << 2,asuint(attributes.lifetime));\n           
@@ -806,13 +805,13 @@ VisualEffectResource:
         valueIndex: 31
         data[0]: 5
         data[1]: -1
-        data[2]: 2
+        data[2]: 1
         data[3]: 3
       - op: 5
         valueIndex: 32
         data[0]: 5
         data[1]: -1
-        data[2]: 1
+        data[2]: 2
         data[3]: 3
       - op: 5
         valueIndex: 33
@@ -822,8 +821,8 @@ VisualEffectResource:
         data[3]: 3
       - op: 28
         valueIndex: 34
-        data[0]: 6
-        data[1]: 7
+        data[0]: 7
+        data[1]: 6
         data[2]: -1
         data[3]: 1
       - op: 5
@@ -1278,9 +1277,7 @@ VisualEffectResource:
       - nameId: sourceAttributeBuffer
         index: 1
       temporaryBuffers: []
-      values:
-      - nameId: Box_center_d
-        index: 4
+      values: []
       params:
       - nameId: bounds_center
         index: 0
@@ -1364,7 +1361,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661614556}
-  m_UIPosition: {x: 941.2763, y: -132.6938}
+  m_UIPosition: {x: 928, y: -254}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -2861,7 +2858,7 @@ MonoBehaviour:
         m_SerializableType: UnityEditor.VFX.AABox, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       m_SerializableObject: '{"center":{"x":0.0,"y":0.0,"z":0.0},"size":{"x":100.0,"y":1.0,"z":100.0}}'
-    m_Space: 1
+    m_Space: 0
   m_Property:
     name: Box
     m_serializedType:

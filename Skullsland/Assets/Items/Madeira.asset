@@ -15,6 +15,9 @@ MonoBehaviour:
   ID: 32
   name: Madeira
   icon: {fileID: 21300000, guid: d14ec2d29613c5e4695068dc725eb8e3, type: 3}
+  description: Usado para criar itens
+  prefabItem: {fileID: 919132149155446097, guid: d3d31375e4abb524a9434e056dc72e12,
+    type: 3}
   isDefaultItem: 0
   MaximunStacks: 14
   itemtypes: 1

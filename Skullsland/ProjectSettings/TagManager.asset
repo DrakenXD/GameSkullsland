@@ -10,6 +10,7 @@ TagManager:
   - Item
   - Animal
   - Sun
+  - InventoryController
   layers:
   - Default
   - TransparentFX
