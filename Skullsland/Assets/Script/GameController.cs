@@ -191,10 +191,10 @@ public class GameController : MonoBehaviour
 
 
         PlayerUI.instance.UpdateUI();
+        
         Temperature();
 
     }
-
     private void Life()
     {
         if (PlayerStats.instance.life < stats.maxlife)
@@ -213,6 +213,11 @@ public class GameController : MonoBehaviour
                 T_R_L -= Time.deltaTime;
             }
         }
+
+        if (PlayerStats.instance.food <= 0 || PlayerStats.instance.thirst <= 0)
+        {
+
+        }
     }
     private void Energy()
     {
@@ -229,11 +234,10 @@ public class GameController : MonoBehaviour
             S_TE = S_timeEnergy;
         }
     }
-
     private void Timer()
     {
-        
-        if (T_timerupdate>0)
+
+        if (T_timerupdate > 0) 
         {
            
             T_timerupdate -= Time.deltaTime;
@@ -278,6 +282,14 @@ public class GameController : MonoBehaviour
                     PlayerStats.instance.Graus = S_GrausPositive;
                 }
                
+                //Desvantagens para o player ao passar do limite
+                if (PlayerStats.instance.Graus > PlayerStats.instance.maxheat)
+                {
+                    //tela em fogo
+                    //ganha uma sede(ja colocado)
+
+                }
+
             }
             else if(T_rdValue > 51)
             {
@@ -302,7 +314,16 @@ public class GameController : MonoBehaviour
                 {
                     PlayerStats.instance.Graus = S_GrausNegative;
                 }
-                
+
+                //Desvantagens para o player ao passar do limite
+                if (PlayerStats.instance.Graus < PlayerStats.instance.maxcold)
+                {
+                    //tela em gelo
+
+                    PlayerStats.instance.speed = 5;
+                    PlayerStats.instance.speedrun = 8;
+                }
+
             }
 
          
@@ -368,19 +389,8 @@ public class GameController : MonoBehaviour
             count = true;
         }
 
-        //Desvantagens para o player ao passar do limite
-        if (PlayerStats.instance.Graus > PlayerStats.instance.maxheat)
-        {
-            //tela em fogo
-            
-
-        }else if (PlayerStats.instance.Graus < PlayerStats.instance.maxcold)
-        {
-           //tela em gelo
-
-            PlayerStats.instance.speed = 5;
-            PlayerStats.instance.speedrun = 8;
-        }
+       
+      
         
     }
     void Hour()
@@ -415,7 +425,6 @@ public class GameController : MonoBehaviour
           
         }
     }
-
     void Esc()
     {
         
