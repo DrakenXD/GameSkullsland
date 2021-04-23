@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask layerHit;
     private Vector3 _rotMouse;
     private Vector2 _rotStick;
-    private Vector3 move;
+    private Vector2 move;
     private float rotationspeed;
     private float lastAngle;
     private float updateAngle;
@@ -40,7 +41,29 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private Animator anim;
-   
+    private Player input;
+
+    private void Awake()
+    {
+        input = new Player();
+
+        //movimento do jogador
+        input.PlayerController.Moviment.performed += x => Move(x.ReadValue<Vector2>());
+
+        //rotação do jogador
+        input.PlayerController.RotationGamePad.performed += x => RotationGamepad(x.ReadValue<Vector2>());
+        //input.PlayerController.RotationMouse.performed += x => RotationMouse(x.ReadValue<Vector2>());
+    }
+
+    private void OnEnable()
+    {
+        input.PlayerController.Enable();
+    }
+    private void OnDisable()
+    {
+        input.PlayerController.Disable();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,16 +76,56 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        
+      
+
+        // MoveInput();
+        // Controller();
+
+        // RotationCharacter();
+        //  Setlight();
+
+
+    }
+    public void Move(Vector2 _move)
+    {
+        rb.velocity = new Vector3(_move.x, 0, _move.y) * PlayerStats.instance.speed;
+    }
+    public void RotationGamepad(Vector2 _rot)
+    {
+
+      
+
+        updateAngle = Mathf.Atan2(_rot.y, _rot.x) * Mathf.Rad2Deg - 90f;
+
+        transform.eulerAngles = new Vector3(0, updateAngle, 0);
+        
        
+    }
+    public void RotationMouse(Vector2 _mouse)
+    {
+        _mouse = cam.ScreenToWorldPoint(_mouse);
+
+        Debug.Log(_mouse);
+        Ray cameraray = cam.ScreenPointToRay(_mouse);
+
+        Plane groundplane = new Plane(Vector3.up, Vector3.zero);
+
+        float raylenght;
 
 
-        MoveInput();
-        Controller();
-       
-        RotationCharacter();
-        Setlight();
 
+        if (Physics.Raycast(cameraray, out RaycastHit raycast, Mathf.Infinity, layerHit))
+        {
 
+            Vector3 pointToLook = cameraray.GetPoint(raycast.distance);
+
+            Debug.DrawLine(cameraray.origin, pointToLook, Color.blue);
+
+            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+        }
     }
     private void FixedUpdate()
     {
@@ -108,7 +171,7 @@ public class PlayerController : MonoBehaviour
     void MoveInput()
     {
         move.x = Input.GetAxisRaw("Horizontal");
-        move.z = Input.GetAxisRaw("Vertical");
+        move.y = Input.GetAxisRaw("Vertical");
 
         float velocity;
 
@@ -134,7 +197,7 @@ public class PlayerController : MonoBehaviour
         
         
 
-        if (move.x != 0 && !IsRunning || move.z != 0 && !IsRunning)
+        if (move.x != 0 && !IsRunning || move.y != 0 && !IsRunning)
         {
             IsWalking = true;
 
@@ -165,52 +228,11 @@ public class PlayerController : MonoBehaviour
     }
     void RotationCharacter()
     {
-        //rotação com controle
+        
 
-        _rotStick.x = -Input.GetAxisRaw("Stick Right H");
-        _rotStick.y = -Input.GetAxisRaw("Stick Right V");
-
-        if (_rotStick.x >= 0.2f || _rotStick.x <= -0.2f || _rotStick.y >= 0.2f || _rotStick.y <= -0.2f)
-        {
-
-            lastAngle = updateAngle;
-        }
-
-        if (GameController.usingController)
-        {
-            updateAngle = Mathf.Atan2(_rotStick.y, _rotStick.x) * Mathf.Rad2Deg - 90f;
-
-            transform.eulerAngles = new Vector3(0, lastAngle, 0);
-
-        }
 
         //rotação com mouse
 
-        if (!GameController.usingController)
-        {
-        
-
-            
-
-            Ray cameraray = cam.ScreenPointToRay(Input.mousePosition);
-           
-            Plane groundplane = new Plane(Vector3.up, Vector3.zero);
-           
-            float raylenght;
-
-
-
-            if (Physics.Raycast(cameraray, out RaycastHit raycast, Mathf.Infinity, layerHit)) 
-            {
-               
-                Vector3 pointToLook = cameraray.GetPoint(raycast.distance);
-
-                Debug.DrawLine(cameraray.origin, pointToLook, Color.blue);
-
-                transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
-            }
-          
-        }
 
 
       
