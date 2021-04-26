@@ -74,9 +74,17 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) && PlayerStats.instance.energy > 0 || Input.GetAxis("Fire1") == 1 && PlayerStats.instance.energy > 0)
         {
-            
-            anim.SetBool("IsAttaking", true);
             isAttack = true;
+
+            if (Random.Range(0,101) > 51)
+            {
+                anim.SetBool("IsAttaking", isAttack);
+            }
+            else
+            {
+                anim.SetBool("IsAttaking2", isAttack);
+            }
+           
            
         }
 
@@ -111,43 +119,49 @@ public class PlayerController : MonoBehaviour
         move.z = Input.GetAxisRaw("Vertical");
 
         float velocity;
-
-        
         
 
-        if (Input.GetKey(KeyCode.LeftShift) && PlayerStats.instance.energy > 0 || Input.GetAxis("Run") >=1 && PlayerStats.instance.energy > 0)
-        {
-            velocity = PlayerStats.instance.speed +PlayerStats.instance.speedrun;
-            
-            IsRunning = true;
-
-            
-        }
-        else
-        {
-            velocity = PlayerStats.instance.speed;
-
-            IsRunning = false;
-
-        }
-        
-        
-        
-
-        if (move.x != 0 && !IsRunning || move.z != 0 && !IsRunning)
+        if (move.x != 0 || move.z != 0 )
         {
             IsWalking = true;
 
+            if (Input.GetKey(KeyCode.LeftShift) && PlayerStats.instance.energy > 0 || Input.GetAxis("Run") >= 1 && PlayerStats.instance.energy > 0)
+            {
+                velocity = PlayerStats.instance.speed + PlayerStats.instance.speedrun;
+
+                IsRunning = true;
+
+
+            }
+            else
+            {
+                velocity = PlayerStats.instance.speed;
+
+                IsRunning = false;
+
+            }
+            rb.velocity = move * velocity;
         }
         else
         {
             IsWalking = false;
         }
 
-        rb.velocity = move * velocity;
+        
 
         anim.SetBool("IsRunning", IsRunning);
         anim.SetBool("IsMoving", IsWalking);
+    }
+    private string currentState;
+    private void ChangeAnimationState(string newState)
+    {
+        // evita que uma mesma animação se auto interrompa
+        if (currentState == newState) return;
+
+        //ativar animação
+        anim.Play(newState);
+
+        currentState = newState;
     }
     private void Setlight()
     {
@@ -244,11 +258,13 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        anim.SetBool("IsAttaking", false);
+        
     }
     public void AttackFalse()
     {
-        anim.SetBool("IsAttaking", false);
+        isAttack = false;
+        anim.SetBool("IsAttaking", isAttack);
+        anim.SetBool("IsAttaking2", isAttack);
     }
     private void OnDrawGizmos()
     {
