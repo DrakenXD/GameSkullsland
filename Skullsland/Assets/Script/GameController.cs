@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 
@@ -35,7 +36,11 @@ public class GameController : MonoBehaviour
     public int AmountRestoreLife;
     public float TimeRestoreLife;
     private float T_R_L;
-    
+
+    [Header("Lack of food and water")]
+    public float TimeToLoseLife;
+    private float T_T_Lose_Life;
+
     [Header("Restore Energy Move Or Stop")]
     public int M_LostAmountEnergy;
     public int S_AmountRestoredEnergy;
@@ -60,8 +65,12 @@ public class GameController : MonoBehaviour
     public Transform HourPointer;
 
     [Header("UI Temperature")]
-    public TextMeshProUGUI txtTemperature;
-    public Transform GrausPointer;
+    public Image UI_bartemp;
+    public Image UI_bartempCold;
+    public Image UI_bartempHot;
+    public CanvasGroup EffectCold;
+    public CanvasGroup EffectHot;
+
     int T_rdValue;
     bool T_updatevalue;
     public float T_timerupdate;
@@ -76,15 +85,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        txtTemperature.SetText(PlayerStats.instance.Graus + "°");
-        if (PlayerStats.instance.Graus > 0)
-        {
-            GrausPointer.localPosition = new Vector3(PlayerStats.instance.Graus * 2, 0, 0);
-        }
-        else
-        {
-            GrausPointer.localPosition = new Vector3(PlayerStats.instance.Graus * 7, 0, 0);
-        }
+    
 
         tgsky = GameObject.FindGameObjectWithTag("Sun").GetComponent<TGSky>();
         stats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
@@ -99,6 +100,7 @@ public class GameController : MonoBehaviour
         S_TT = S_timethirst;
         S_TE = S_timeEnergy;
 
+        T_T_Lose_Life = TimeToLoseLife;
     }
 
     // Update is called once per frame
@@ -197,26 +199,38 @@ public class GameController : MonoBehaviour
     }
     private void Life()
     {
-        if (PlayerStats.instance.life < stats.maxlife)
-        {
-            if (T_R_L <= 0)
-            {
-                PlayerStats.instance.life += AmountRestoreLife;
-                
-                PlayerStats.instance.food--;
-                PlayerStats.instance.thirst--;
-
-                T_R_L = TimeRestoreLife;
-            }
-            else
-            {
-                T_R_L -= Time.deltaTime;
-            }
-        }
+        
 
         if (PlayerStats.instance.food <= 0 || PlayerStats.instance.thirst <= 0)
         {
+            if (T_T_Lose_Life<=0)
+            {
+                PlayerStats.instance.life--;
+                T_T_Lose_Life = TimeToLoseLife;
+            }
+            else
+            {
+                T_T_Lose_Life -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (PlayerStats.instance.life < stats.maxlife)
+            {
+                if (T_R_L <= 0)
+                {
+                    PlayerStats.instance.life += AmountRestoreLife;
 
+                    PlayerStats.instance.food--;
+                    PlayerStats.instance.thirst--;
+
+                    T_R_L = TimeRestoreLife;
+                }
+                else
+                {
+                    T_R_L -= Time.deltaTime;
+                }
+            }
         }
     }
     private void Energy()
@@ -282,13 +296,7 @@ public class GameController : MonoBehaviour
                     PlayerStats.instance.Graus = S_GrausPositive;
                 }
                
-                //Desvantagens para o player ao passar do limite
-                if (PlayerStats.instance.Graus > PlayerStats.instance.maxheat)
-                {
-                    //tela em fogo
-                    //ganha uma sede(ja colocado)
-
-                }
+               
 
             }
             else if(T_rdValue > 51)
@@ -315,14 +323,7 @@ public class GameController : MonoBehaviour
                     PlayerStats.instance.Graus = S_GrausNegative;
                 }
 
-                //Desvantagens para o player ao passar do limite
-                if (PlayerStats.instance.Graus < PlayerStats.instance.maxcold)
-                {
-                    //tela em gelo
-
-                    PlayerStats.instance.speed = 5;
-                    PlayerStats.instance.speedrun = 8;
-                }
+                
 
             }
 
@@ -330,19 +331,66 @@ public class GameController : MonoBehaviour
 
 
             T_updatevalue = false;
-
-
-
-            if (PlayerStats.instance.Graus > 0)
+            
+            
+            if (PlayerStats.instance.Graus < PlayerStats.instance.maxheat && PlayerStats.instance.Graus > PlayerStats.instance.maxcold)
             {
-                GrausPointer.localPosition = new Vector3(PlayerStats.instance.Graus * 2, 0, 0);
-            }
-            else
-            {
-                GrausPointer.localPosition = new Vector3(PlayerStats.instance.Graus * 7, 0, 0);
+                UI_bartempCold.enabled = false;
+                UI_bartempHot.enabled = false;
+
+                if (EffectCold.alpha > 0)
+                {
+                    EffectCold.alpha -= 0.050f;
+                }
+                else if (EffectHot.alpha > 0)
+                {
+                    EffectHot.alpha -= 0.050f;
+                }
+
+                UI_bartemp.color = Color.yellow;
             }
 
-            txtTemperature.SetText(PlayerStats.instance.Graus + "°");
+            //Desvantagens para o player ao passar do limite
+            if (PlayerStats.instance.Graus > PlayerStats.instance.maxheat)
+            {
+                UI_bartempHot.enabled = true;
+                UI_bartempCold.enabled = false;
+
+                EffectHot.alpha += 0.050f;
+
+                UI_bartemp.color = Color.red;
+
+                if (EffectCold.alpha > 0)
+                {
+                    EffectCold.alpha -= 0.050f;
+                }
+
+                //ganha uma sede(ja colocado)
+
+            }
+
+            //Desvantagens para o player ao passar do limite
+            if (PlayerStats.instance.Graus < PlayerStats.instance.maxcold)
+            {
+                UI_bartempCold.enabled = true;
+                UI_bartempHot.enabled = false;
+
+                EffectCold.alpha += 0.050f;
+
+                UI_bartemp.color = Color.cyan;
+
+                if (EffectHot.alpha > 0)
+                {
+                    EffectHot.alpha -= 0.050f;
+                }
+
+                PlayerStats.instance.speed = 5;
+                PlayerStats.instance.speedrun = 8;
+            }
+
+            BarUpdate(UI_bartemp,PlayerStats.instance.Graus,100);
+
+         
         }
         else
         {
@@ -362,8 +410,6 @@ public class GameController : MonoBehaviour
                 
                 DAYSTOTAL++;
 
-
-
                 if (days >= dayForWinter && days <= WinterDays)
                 {
                     summer = false;
@@ -373,15 +419,20 @@ public class GameController : MonoBehaviour
                 {
                     winter = false;
                     summer = true;
-                }else if (days > SummerDays)
+                }
+                else if (days > SummerDays)
                 {
+
                     summer = false;
                     days = 0;
+                }
+                else if (days < WinterDays) 
+                {
+                    winter = false;
                 }
 
                 count = false;
             }
-
 
         }
         else
@@ -392,6 +443,11 @@ public class GameController : MonoBehaviour
        
       
         
+    }
+    void BarUpdate(Image bar, float min, float max)
+    {
+        bar.fillAmount = min / max;
+      
     }
     void Hour()
     { 
@@ -424,6 +480,10 @@ public class GameController : MonoBehaviour
             usingController = false;
           
         }
+    }
+    public void MudarATemporada(int day)
+    {
+        days = day;
     }
     void Esc()
     {

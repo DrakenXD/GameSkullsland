@@ -49,22 +49,42 @@ public class PlayerUI : MonoBehaviour
    
     public  void UpdateUI()
     {
-        if (PlayerStats.instance.life >= stats.maxlife)
+        if (PlayerStats.instance.life > stats.maxlife)
         {
             PlayerStats.instance.life = stats.maxlife;
         }
+        else if(PlayerStats.instance.life < 0)
+        {
+            PlayerStats.instance.life = 0;
+        }
+
         if (PlayerStats.instance.energy >= stats.maxenergy)
         {
             PlayerStats.instance.energy = stats.maxenergy;
         }
+        else if (PlayerStats.instance.energy < 0)
+        {
+            PlayerStats.instance.energy = 0;
+        }
+
         if (PlayerStats.instance.thirst >= stats.maxthirst)
         {
             PlayerStats.instance.thirst = stats.maxthirst;
         }
+        else if (PlayerStats.instance.thirst < 0)
+        {
+            PlayerStats.instance.thirst = 0;
+        }
+
         if (PlayerStats.instance.food >= stats.maxfood)
         {
             PlayerStats.instance.food = stats.maxfood;
         }
+        else if (PlayerStats.instance.food < 0)
+        {
+            PlayerStats.instance.food = 0;
+        }
+
         UpdateBar();
     }
 

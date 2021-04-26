@@ -35,7 +35,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        if (instance==null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -47,7 +47,13 @@ public class PlayerStats : MonoBehaviour
         food = maxfood;
         thirst = maxthirst;
         energy = maxenergy;
+
+
+        Graus = 50;
+        maxheat = 80;
+        maxcold = 30;
     }
+
 
 
 

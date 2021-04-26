@@ -196,9 +196,7 @@ public class PlayerController : MonoBehaviour
            
             Plane groundplane = new Plane(Vector3.up, Vector3.zero);
            
-            float raylenght;
-
-
+    
 
             if (Physics.Raycast(cameraray, out RaycastHit raycast, Mathf.Infinity, layerHit)) 
             {
