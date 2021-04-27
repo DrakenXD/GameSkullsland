@@ -19,7 +19,7 @@ public class HandWithObject : MonoBehaviour
             return;
         }
         instance = this;
-
+        transform.parent = pointItem;
         inventoryController = GameObject.FindGameObjectWithTag("InventoryController").GetComponent<InventoryController>();
     }
 
@@ -42,7 +42,7 @@ public class HandWithObject : MonoBehaviour
                 if (ItemPrefab == inventoryController.slots[index].prefabitem)
                 {
                     i = 0;
-                    //ItemPrefab.transform.position = pointItem.position;
+                    ItemPrefab.transform.position = pointItem.position;
                 }
                 else
                 {
@@ -51,7 +51,7 @@ public class HandWithObject : MonoBehaviour
                     {
                         ItemPrefab = inventoryController.slots[index].prefabitem;
 
-                       Instantiate(ItemPrefab, transform.position, Quaternion.identity);
+                        Instantiate(ItemPrefab, transform.position, Quaternion.identity);
 
                         
                     }
@@ -59,9 +59,13 @@ public class HandWithObject : MonoBehaviour
 
                 
             }
-           
-          
-          
+
+
+
+        }
+        else
+        {
+            Destroy(ItemPrefab);
         }
     }
 }
