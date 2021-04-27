@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private Animator anim;
-   
+    int rdanim;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,21 +74,31 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) && PlayerStats.instance.energy > 0 || Input.GetAxis("Fire1") == 1 && PlayerStats.instance.energy > 0)
         {
-            isAttack = true;
+            
 
-            if (Random.Range(0,101) > 51)
+            rdanim = Random.Range(0, 101);
+
+            if (rdanim >= 51 && !isAttack)
             {
+                isAttack = true;
                 anim.SetBool("IsAttaking", isAttack);
             }
-            else
+            else if(rdanim <=  50 && !isAttack)
             {
+                isAttack = true;
                 anim.SetBool("IsAttaking2", isAttack);
             }
-           
-           
+
+            
         }
 
         
+    }
+    public void AttackFalse()
+    {
+        isAttack = false;
+        anim.SetBool("IsAttaking", isAttack);
+        anim.SetBool("IsAttaking2", isAttack);
     }
     private void Gravity()
     {
@@ -260,12 +270,7 @@ public class PlayerController : MonoBehaviour
 
         
     }
-    public void AttackFalse()
-    {
-        isAttack = false;
-        anim.SetBool("IsAttaking", isAttack);
-        anim.SetBool("IsAttaking2", isAttack);
-    }
+   
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
