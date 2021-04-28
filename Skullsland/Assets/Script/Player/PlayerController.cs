@@ -150,11 +150,16 @@ public class PlayerController : MonoBehaviour
                 IsRunning = false;
 
             }
+
+            
+
             rb.velocity = move * velocity;
         }
         else
         {
+            IsRunning = false;
             IsWalking = false;
+            rb.velocity = Vector3.zero;
         }
 
         

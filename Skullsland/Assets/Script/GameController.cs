@@ -82,10 +82,17 @@ public class GameController : MonoBehaviour
     public static bool usingController;
     private TGSky tgsky;
     private PlayerStats stats;
+    public static GameController instance;
     // Start is called before the first frame update
     void Start()
     {
-    
+
+        if (instance != null)
+        {
+            Debug.Log("Mais de uma instancia encontrada");
+            return;
+        }
+        instance = this;
 
         tgsky = GameObject.FindGameObjectWithTag("Sun").GetComponent<TGSky>();
         stats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
@@ -272,61 +279,65 @@ public class GameController : MonoBehaviour
         //contagem de graus
         if (T_updatevalue)
         {
-            if (T_rdValue < 51 )
-            {
 
+          
+
+            if (T_rdValue < 51)
+            {
                 if (!summer && !winter)
                 {
-                    if (PlayerStats.instance.Graus > N_GrausPositive-1)
-                    {
-                        PlayerStats.instance.Graus = N_GrausPositive;
-                    }
-                    else
-                    {
-                        PlayerStats.instance.Graus++;
-                    }
+                    PlayerStats.instance.Graus++;
+
+                
                 }
                 else if (!winter && summer)
                 {
-                    PlayerStats.instance.Graus += 2;
-                }
+                    
 
-                if (PlayerStats.instance.Graus > S_GrausPositive-1)
-                {
-                    PlayerStats.instance.Graus = S_GrausPositive;
+                    if (PlayerStats.instance.Graus > S_GrausPositive)
+                    {
+                        PlayerStats.instance.Graus = S_GrausPositive;
+                    }
+                    else
+                    {
+                        PlayerStats.instance.Graus += 2;
+                    }
                 }
-               
-               
 
             }
-            else if(T_rdValue > 51)
+            else if (T_rdValue > 51)
             {
 
                 if (!winter && !summer)
                 {
-                    if (PlayerStats.instance.Graus < N_GrausNegative-1)
-                    {
-                        PlayerStats.instance.Graus = N_GrausNegative;
-                    }
-                    else
-                    {
-                        PlayerStats.instance.Graus--;
-                    }
+                    PlayerStats.instance.Graus--;
+                 
+
                 }
                 else if (winter && !summer)
                 {
-                    PlayerStats.instance.Graus -= 2;
-                }
-               
-                if (PlayerStats.instance.Graus < S_GrausNegative+1)
-                {
-                    PlayerStats.instance.Graus = S_GrausNegative;
+                   
+
+                    if (PlayerStats.instance.Graus < S_GrausNegative)
+                    {
+                        PlayerStats.instance.Graus = S_GrausNegative;
+                    }
+                    else
+                    {
+                        PlayerStats.instance.Graus -= 2;
+                    }
                 }
 
-                
 
             }
 
+            if (PlayerStats.instance.Graus > PlayerStats.instance.maxheat - 1 && !summer && !Camp_Fire.InRadiusCampFire)
+            {
+                PlayerStats.instance.Graus -= 4;
+            }else if (PlayerStats.instance.Graus < PlayerStats.instance.maxcold - 1 && !winter)
+            {
+                PlayerStats.instance.Graus += 4;
+            }
          
 
 
@@ -356,7 +367,14 @@ public class GameController : MonoBehaviour
                 UI_bartempHot.enabled = true;
                 UI_bartempCold.enabled = false;
 
-                EffectHot.alpha += 0.050f;
+                if (EffectHot.alpha < .8f)
+                {
+                    EffectHot.alpha += 0.050f;
+                }
+                else
+                {
+                    EffectHot.alpha = .8f;
+                }
 
                 UI_bartemp.color = Color.red;
 
@@ -443,6 +461,14 @@ public class GameController : MonoBehaviour
        
       
         
+    }
+    public void AddHeat(int value)
+    {
+        PlayerStats.instance.Graus += value;
+    }
+    public void AddCold(int value)
+    {
+        PlayerStats.instance.Graus -= value;
     }
     void BarUpdate(Image bar, float min, float max)
     {
