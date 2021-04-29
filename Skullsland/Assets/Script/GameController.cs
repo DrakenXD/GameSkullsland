@@ -21,14 +21,12 @@ public class GameController : MonoBehaviour
     public int S_GrausPositive;
     public int S_GrausNegative;
 
-    [Header("Max Graus day normal  + And -")]
-    public int N_GrausPositive;
-    public int N_GrausNegative;
-
     [Header("Penalty in Cold & Heat")]
     public float C_speed;
     public float C_speerun;
     public int H_useofwater;
+    public float C_H_TimeToLoseLife;
+    private float C_H_T_T_L_Life;
 
 
 
@@ -108,6 +106,8 @@ public class GameController : MonoBehaviour
         S_TE = S_timeEnergy;
 
         T_T_Lose_Life = TimeToLoseLife;
+
+        C_H_T_T_L_Life = C_H_TimeToLoseLife;
     }
 
     // Update is called once per frame
@@ -239,6 +239,21 @@ public class GameController : MonoBehaviour
                 }
             }
         }
+
+
+        if (PlayerStats.instance.Graus > PlayerStats.instance.maxheat || PlayerStats.instance.Graus < PlayerStats.instance.maxcold)
+        {
+           
+            if (C_H_T_T_L_Life <= 0)
+            {
+                PlayerStats.instance.life--;
+                C_H_T_T_L_Life = C_H_TimeToLoseLife;
+            }
+            else
+            {
+                C_H_T_T_L_Life -= Time.deltaTime;
+            }
+        }
     }
     private void Energy()
     {
@@ -333,6 +348,8 @@ public class GameController : MonoBehaviour
 
             if (PlayerStats.instance.Graus > PlayerStats.instance.maxheat - 1 && !summer && !Camp_Fire.InRadiusCampFire)
             {
+
+
                 PlayerStats.instance.Graus -= 4;
             }else if (PlayerStats.instance.Graus < PlayerStats.instance.maxcold - 1 && !winter)
             {
