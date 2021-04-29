@@ -13,10 +13,12 @@ public class EnemyController : MonoBehaviour
     [Header("Bar Image")]
     public Image UI_Life;
     public Image UI_Damage;
+    
     protected bool was_attacked;
 
     [Header("PopUp")]
     public GameObject prefabtextdamage;
+    public Transform textDamagepos;
 
     [Header("Attack")]
     public float timeAttack;
@@ -197,7 +199,7 @@ public class EnemyController : MonoBehaviour
         
         Life -= dmg;
 
-        GameObject txt = Instantiate(prefabtextdamage, new Vector3(transform.position.x,.5f,transform.position.z), Quaternion.identity);
+        GameObject txt = Instantiate(prefabtextdamage, textDamagepos.position, Quaternion.identity);
         txt.GetComponent<TextMesh>().text = ""+dmg;
        
         UI_Life.fillAmount = Life / maxLife;

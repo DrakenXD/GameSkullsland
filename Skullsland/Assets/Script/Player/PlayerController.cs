@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
         Controller();
        
         RotationCharacter();
+
+        ShowNameItem();
         Setlight();
 
 
@@ -234,8 +236,12 @@ public class PlayerController : MonoBehaviour
 
                 Debug.DrawLine(cameraray.origin, pointToLook, Color.blue);
 
+
                 transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
             }
+           
+
+
           
         }
 
@@ -244,6 +250,24 @@ public class PlayerController : MonoBehaviour
 
      
 
+    }
+    void ShowNameItem()
+    {
+        GameObject[] itemName = GameObject.FindGameObjectsWithTag("Item"); 
+        foreach (GameObject ShowItem in itemName)
+        {
+
+            if (Vector3.Distance(transform.position, ShowItem.transform.position) < 10)
+            {
+                ShowItem.gameObject.GetComponent<ItemPickup>().MouseUP = true;
+            }
+            else
+            {
+                ShowItem.gameObject.GetComponent<ItemPickup>().MouseUP = false;
+            }
+
+
+        }
     }
     public void TakeDamage(int dmg)
     {

@@ -16,19 +16,22 @@ public class AnimalController : MonoBehaviour
 
     [Header("UI")]
     public Image UI_Life;
+    public Image UI_Damage;
     public GameObject prefabtextDamage;
+    public Transform TextDamagePos;
 
     [Header("Move Target")]
     public Transform target;
-  
-
     public float MaxTimeNextTarget;
     public float MinTimeNextTarget;
     public float MaxTimeStop;
     public float MinTimeStop;
     protected float T_N_T;
     protected float T_S;
+
+
     protected NavMeshAgent navagent;
+    private bool was_attacked;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +45,7 @@ public class AnimalController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (was_attacked) UIDamageSystem();
 
         StateController();
      
@@ -123,13 +127,29 @@ public class AnimalController : MonoBehaviour
     public virtual void TakeDamage(int dmg)
     {
 
-        GameObject txt = Instantiate(prefabtextDamage, new Vector3(transform.position.x, .5f, transform.position.z), Quaternion.identity);
+        GameObject txt = Instantiate(prefabtextDamage, TextDamagePos.position, Quaternion.identity);
         
         txt.GetComponent<TextMesh>().text = "" + dmg;
 
         Life -= dmg;
 
         UI_Life.fillAmount = Life / MaxLife;
+        was_attacked = true;
+    }
+
+    public void UIDamageSystem()
+    {
+        if (UI_Life.fillAmount < UI_Damage.fillAmount)
+        {
+            UI_Damage.enabled = true;
+            UI_Damage.fillAmount -= 0.015f;
+        }
+        else
+        {
+            UI_Damage.enabled = false;
+            was_attacked = false;
+            UI_Damage.fillAmount = UI_Life.fillAmount;
+        }
     }
     public enum AnimalState
     {

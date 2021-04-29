@@ -61,7 +61,7 @@ public class InventoryController : MonoBehaviour
             ChooseSlotKeyboardAndScroll();
             viewingDescription();
 
-            HandWithObject.instance.ItemInHand(index);
+            //HandWithObject.instance.ItemInHand(index);
         }
     }
 
