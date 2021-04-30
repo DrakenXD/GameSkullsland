@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attack")]
     public Transform Attackpoint;
+    public LayerMask layerattack;
     public float A_radius;
     public static bool isAttack;
 
@@ -277,7 +278,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerStats.instance.energy--;
         
-        Collider[] hitInfo = Physics.OverlapSphere(Attackpoint.position, A_radius);
+        Collider[] hitInfo = Physics.OverlapSphere(Attackpoint.position, A_radius,layerattack);
         
         foreach (Collider hit in hitInfo)
         {

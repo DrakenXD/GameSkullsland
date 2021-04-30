@@ -369,7 +369,7 @@ BoxCollider:
   m_GameObject: {fileID: 6883311679302756799}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -414,9 +414,9 @@ GameObject:
   - component: {fileID: 6883311679580739389}
   - component: {fileID: 6883311679580739391}
   - component: {fileID: 6883311679580739388}
+  - component: {fileID: 6883311679580739390}
   - component: {fileID: 6883311679580739384}
   - component: {fileID: 6883311679580739385}
-  - component: {fileID: 6883311679580739390}
   - component: {fileID: 1025267983}
   m_Layer: 12
   m_Name: Animal
@@ -489,6 +489,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6883311679580739390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883311679580739362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e771507a902da64995b1e01832502c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxLife: 10
+  normalspeed: 5
+  scaredspeed: 10
+  state: 0
+  UI_Life: {fileID: 1923498196}
+  UI_Damage: {fileID: 0}
+  prefabtextDamage: {fileID: 1246810773481554150, guid: ca866cd04fc85724bac68fa9c424e7cf,
+    type: 3}
+  TextDamagePos: {fileID: 1238217578759226922}
+  target: {fileID: 6883311679447812452}
+  MaxTimeNextTarget: 5
+  MinTimeNextTarget: 2
+  MaxTimeStop: 5
+  MinTimeStop: 2
 --- !u!135 &6883311679580739384
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -524,31 +550,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6883311679580739390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6883311679580739362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e771507a902da64995b1e01832502c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxLife: 10
-  normalspeed: 5
-  scaredspeed: 10
-  state: 0
-  UI_Life: {fileID: 1923498196}
-  prefabtextDamage: {fileID: 1246810773481554150, guid: ca866cd04fc85724bac68fa9c424e7cf,
-    type: 3}
-  TextDamagePos: {fileID: 1238217578759226922}
-  target: {fileID: 6883311679447812452}
-  MaxTimeNextTarget: 5
-  MinTimeNextTarget: 2
-  MaxTimeStop: 5
-  MinTimeStop: 2
 --- !u!54 &1025267983
 Rigidbody:
   m_ObjectHideFlags: 0
