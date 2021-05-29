@@ -24,6 +24,8 @@ public class EnemyController : MonoBehaviour
     public float timeAttack;
     protected float T_A;
     public float radiusAttack;
+    public Transform AttackPoint; // usar quando for necessario
+
     public LayerMask layerAttack;
     public bool InRadius;
    
@@ -212,7 +214,7 @@ public class EnemyController : MonoBehaviour
         if (UI_Life.fillAmount < UI_Damage.fillAmount)
         {
             UI_Damage.enabled = true;
-            UI_Damage.fillAmount -= 0.015f;
+            UI_Damage.fillAmount -= 0.005f;
         }
         else
         {
@@ -235,7 +237,7 @@ public class EnemyController : MonoBehaviour
         Loadingattack,
         Death,
     }
-    private void OnDrawGizmosSelected()
+    public virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position,MaxRange);

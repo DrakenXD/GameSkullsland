@@ -45,6 +45,7 @@ public class EnemyRanged : EnemyController
         
         NewBullet(bullet);
     }
+  
     public override void LoadingAttack()
     {
         base.LoadingAttack();

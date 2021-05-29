@@ -384,13 +384,13 @@ public class GameController : MonoBehaviour
                 UI_bartempHot.enabled = true;
                 UI_bartempCold.enabled = false;
 
-                if (EffectHot.alpha < .8f)
+                if (EffectHot.alpha < .5f)
                 {
                     EffectHot.alpha += 0.050f;
                 }
                 else
                 {
-                    EffectHot.alpha = .8f;
+                    EffectHot.alpha = .5f;
                 }
 
                 UI_bartemp.color = Color.red;
@@ -410,7 +410,11 @@ public class GameController : MonoBehaviour
                 UI_bartempCold.enabled = true;
                 UI_bartempHot.enabled = false;
 
-                EffectCold.alpha += 0.050f;
+                if (EffectCold.alpha < .5f)
+                {
+                    EffectCold.alpha += 0.050f;
+                }
+                else EffectCold.alpha = 0.5f;
 
                 UI_bartemp.color = Color.cyan;
 
