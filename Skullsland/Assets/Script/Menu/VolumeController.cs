@@ -11,23 +11,16 @@ public class VolumeController : MonoBehaviour
     [SerializeField] private Slider SoundEffectvolumeSlider = null;
     [SerializeField] private AudioMixer SoundEffectMixer;
 
-    [SerializeField] new AudioSource audio;
-
+ 
     // Start is called before the first frame update
     void Start()
     {
         MusicLoadValues();
+
         SoundEffectLoadValues();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            audio.Play();
-        }
 
-    }
     public void MusicSaveVolumeButton()
     {
         float volumeValue = MusicvolumeSlider.value;
@@ -41,6 +34,7 @@ public class VolumeController : MonoBehaviour
     void MusicLoadValues()
     {
         float volumeValue = PlayerPrefs.GetFloat("Music");
+        
         MusicvolumeSlider.value = volumeValue; 
     }
 
@@ -57,7 +51,7 @@ public class VolumeController : MonoBehaviour
     void SoundEffectLoadValues()
     {
         float volumeValue = PlayerPrefs.GetFloat("SoundEffects");
+        
         SoundEffectvolumeSlider.value = volumeValue;
-      
     }
 }

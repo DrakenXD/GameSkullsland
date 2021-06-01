@@ -214,7 +214,7 @@ public class EnemyController : MonoBehaviour
         if (UI_Life.fillAmount < UI_Damage.fillAmount)
         {
             UI_Damage.enabled = true;
-            UI_Damage.fillAmount -= 0.005f;
+            UI_Damage.fillAmount -= 0.015f;
         }
         else
         {

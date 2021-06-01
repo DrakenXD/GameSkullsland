@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
                 velocity = PlayerStats.instance.speed + PlayerStats.instance.speedrun;
 
                 IsRunning = true;
-
+                rb.velocity = transform.forward * move.z  * velocity;
 
             }
             else
@@ -152,11 +152,12 @@ public class PlayerController : MonoBehaviour
 
                 IsRunning = false;
 
+                rb.velocity = transform.forward * move.z * velocity;
+
             }
 
-            
-
-            rb.velocity = move * velocity;
+  
+      
         }
         else
         {
