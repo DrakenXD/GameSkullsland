@@ -99,7 +99,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1275,7 +1275,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785715, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2961,8 +2961,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278352675
-  m_fontColor: {r: 0.13797867, g: 0.4811321, b: 0.0068084607, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 1
   m_fontColorGradient:
@@ -3066,6 +3066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: 0
   nameScene: 
+  Active: 0
   options: 1
   Activate: {fileID: 801107429}
   Disable: {fileID: 626661535}
@@ -3652,8 +3653,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278352675
-  m_fontColor: {r: 0.13797867, g: 0.4811321, b: 0.0068084607, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 1
   m_fontColorGradient:
@@ -3757,6 +3758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: 0
   nameScene: 
+  Active: 0
   options: 0
   Activate: {fileID: 0}
   Disable: {fileID: 0}
@@ -6571,8 +6573,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278352675
-  m_fontColor: {r: 0.13797867, g: 0.4811321, b: 0.0068084607, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 1
   m_fontColorGradient:
@@ -7435,6 +7437,7 @@ GameObject:
   - component: {fileID: 1717056713}
   - component: {fileID: 1717056717}
   - component: {fileID: 1717056716}
+  - component: {fileID: 1717056718}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7500,14 +7503,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717056712}
-  m_LocalRotation: {x: 0.10946751, y: -0.3616213, z: 0.04280069, w: 0.92488647}
-  m_LocalPosition: {x: 17.66, y: 10.22, z: 0.11}
+  m_LocalRotation: {x: 0.10935884, y: -0.36396077, z: 0.043077584, w: 0.9239684}
+  m_LocalPosition: {x: 17.66, y: 10.22, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 276672981}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 13.5, y: -42.71, z: 0}
+  m_LocalEulerAnglesHint: {x: 13.5, y: -43, z: 0}
 --- !u!114 &1717056716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7573,6 +7576,25 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!95 &1717056718
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717056712}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1729283451
 GameObject:
   m_ObjectHideFlags: 0
@@ -8132,6 +8154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: 0
   nameScene: 
+  Active: 1
   options: 1
   Activate: {fileID: 626661535}
   Disable: {fileID: 801107429}
@@ -8616,8 +8639,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278352675
-  m_fontColor: {r: 0.13797867, g: 0.4811321, b: 0.0068084607, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 1
   m_fontColorGradient:
@@ -8721,6 +8744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: 1
   nameScene: Mapa
+  Active: 0
   options: 0
   Activate: {fileID: 0}
   Disable: {fileID: 0}

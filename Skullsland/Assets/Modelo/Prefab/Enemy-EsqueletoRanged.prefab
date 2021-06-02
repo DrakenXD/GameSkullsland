@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6509804, g: 0.09411766, b: 0.04705883, a: 1}
+  m_Color: {r: 1, g: 0.09019608, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1574,6 +1574,7 @@ MonoBehaviour:
   textDamagepos: {fileID: 720230321}
   timeAttack: 0.7
   radiusAttack: 10
+  AttackPoint: {fileID: 0}
   layerAttack:
     serializedVersion: 2
     m_Bits: 256

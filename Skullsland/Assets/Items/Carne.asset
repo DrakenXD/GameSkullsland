@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ff3cc17682f664da8ff7d72c1b322f, type: 3}
+  m_Name: Carne
+  m_EditorClassIdentifier: 
+  ID: 342
+  name: Carne
+  icon: {fileID: 21300000, guid: 49ba70c3a8ff99f448eacd55997a284a, type: 3}
+  description: Carne de primeira qualidade
+  prefabItem: {fileID: 3726647099984639973, guid: e17b411ac87795a4d9dadf4822576835,
+    type: 3}
+  isDefaultItem: 0
+  MaximunStacks: 5
+  itemtypes: 0
+  LifeRegen: 10
+  FoodRegen: 20
+  ThirstRegen: 10

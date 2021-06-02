@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5019608, g: 0.69411767, b: 0.011764707, a: 1}
+  m_Color: {r: 0.7183908, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 6883311679580739384}
   - component: {fileID: 6883311679580739385}
   - component: {fileID: 1025267983}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: Animal
   m_TagString: Animal
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ MonoBehaviour:
   scaredspeed: 10
   state: 0
   UI_Life: {fileID: 1923498196}
-  UI_Damage: {fileID: 0}
+  UI_Damage: {fileID: 2888585535658235429}
   prefabtextDamage: {fileID: 1246810773481554150, guid: ca866cd04fc85724bac68fa9c424e7cf,
     type: 3}
   TextDamagePos: {fileID: 1238217578759226922}
@@ -526,8 +526,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.8967619
+  m_Center: {x: 0, y: 0, z: 0.3967619}
 --- !u!195 &6883311679580739385
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -618,7 +618,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7299453175006330540}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
