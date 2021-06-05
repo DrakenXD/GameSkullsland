@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour,IPointerEnterHandler,IPointerClickHandler,IPointerExitHandler
 {
+    public int IdButton;
+
     [Header("Start")]
     public bool start;
     public string nameScene;
@@ -20,13 +22,33 @@ public class ButtonController : MonoBehaviour,IPointerEnterHandler,IPointerClick
     [Header("Quit")]
     public bool quit;
 
-
-    
-    private Vector3 sizeNormal = new Vector3(1,1,1);
     [Header("Size Button")]
     public Vector3 sizeBig;
+    private Vector3 sizeNormal = new Vector3(1, 1, 1);
 
+    public void ButtonStart()
+    {
+        SceneManager.LoadScene(nameScene);
+    }
+    public void ButtonOptions()
+    {
+        GameController.HaveEsc = false;
+        Disable.SetActive(false);
+        Activate.SetActive(true);
+    }
+    public void ButtonQuit()
+    {
+        Application.Quit();
+    }
 
+    public void ButtonSizeNormal()
+    {
+        transform.localScale = sizeNormal;
+    }
+    public void ButtonSizeModify()
+    {
+        transform.localScale = sizeBig;
+    }
 
     private void Update()
     {
@@ -40,34 +62,31 @@ public class ButtonController : MonoBehaviour,IPointerEnterHandler,IPointerClick
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        transform.localScale = sizeNormal;
+        ButtonSizeNormal();
 
         if (start)
         {
-            SceneManager.LoadScene(nameScene);
+            ButtonStart();
         }else if (options)
         {
-            GameController.HaveEsc = false;
-            Disable.SetActive(false);
-            Activate.SetActive(true);
-
+            ButtonOptions();
         }
         else if (quit)
         {
-            Application.Quit();
+            ButtonQuit();
         }
 
-
-        Debug.Log("dsadas");
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.localScale = sizeBig;
+        ButtonSizeModify();
+
+        SelectButton.index = IdButton;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        transform.localScale = sizeNormal;
+        ButtonSizeNormal();
     }
 
    
