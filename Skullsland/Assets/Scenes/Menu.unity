@@ -1054,10 +1054,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 80e23f02c65396d4b887bed3785ce624,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 6a558acbb898db743bed9c92cbc83479, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.55
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1275,7 +1275,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.780269, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -8931,36 +8931,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6277196498716195994, guid: cfc153f94463d4741abeb8a087471792,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 6277196498716195994, guid: cfc153f94463d4741abeb8a087471792,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 6277196498716195994, guid: cfc153f94463d4741abeb8a087471792,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 6277196498716195995, guid: cfc153f94463d4741abeb8a087471792,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 6277196498716195995, guid: cfc153f94463d4741abeb8a087471792,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.6039216
-      objectReference: {fileID: 0}
-    - target: {fileID: 6277196498716195995, guid: cfc153f94463d4741abeb8a087471792,
-        type: 3}
-      propertyPath: m_Lightmapping
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6619303149804218035, guid: cfc153f94463d4741abeb8a087471792,
         type: 3}

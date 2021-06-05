@@ -5,24 +5,22 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class ButtonController : MonoBehaviour,IPointerEnterHandler,IPointerClickHandler,IPointerExitHandler
+public class ButtonControllerInGame : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
-    [Header("Start")]
-    public bool start;
+    public int id;
+    [Header("BackMenu")]
+    public bool backMenu;
     public string nameScene;
 
+  
+
     [Header("Options")]
-    public bool Active;
+    public bool CloseOptionsInEsc;
     public bool options;
     public GameObject Activate;
     public GameObject Disable;
 
-    [Header("Quit")]
-    public bool quit;
-
-
-    
-    private Vector3 sizeNormal = new Vector3(1,1,1);
+    private Vector3 sizeNormal = new Vector3(1, 1, 1);
     [Header("Size Button")]
     public Vector3 sizeBig;
 
@@ -30,45 +28,53 @@ public class ButtonController : MonoBehaviour,IPointerEnterHandler,IPointerClick
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && Active)
+        if (Input.GetKeyDown(KeyCode.Escape) && CloseOptionsInEsc)
         {
-            GameController.HaveEsc = true;
             Disable.SetActive(false);
             Activate.SetActive(true);
         }
     }
+
+
+    public void ButtonSizeNormal()
+    {
+        transform.localScale = sizeNormal;
+    }
+    public void ButtonSizeModify()
+    {
+        transform.localScale = sizeBig;
+    }
+    public void EnterButton()
+    {
+        ButtonSizeNormal();
+
+        if (backMenu)
+        {
+            SceneManager.LoadScene(nameScene);
+        }
+        else if (options)
+        {
+
+            Disable.SetActive(false);
+            Activate.SetActive(true);
+
+        }
+    }
+        
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        transform.localScale = sizeNormal;
-
-        if (start)
-        {
-            SceneManager.LoadScene(nameScene);
-        }else if (options)
-        {
-            GameController.HaveEsc = false;
-            Disable.SetActive(false);
-            Activate.SetActive(true);
-
-        }
-        else if (quit)
-        {
-            Application.Quit();
-        }
-
-
-        Debug.Log("dsadas");
+        EnterButton();
+      
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.localScale = sizeBig;
+        ButtonSizeModify();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        transform.localScale = sizeNormal;
+        ButtonSizeNormal();
     }
 
-   
 }

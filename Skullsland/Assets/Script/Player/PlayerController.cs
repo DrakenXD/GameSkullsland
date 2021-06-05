@@ -54,12 +54,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
 
 
-        MoveInput();
-        Controller();
-       
+
+        if (!isAttack)
+        {
+            MoveInput();
+            Controller();
+        }
         RotationCharacter();
 
         ShowNameItem();
@@ -77,8 +79,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) && PlayerStats.instance.energy > 0 || Input.GetAxis("Fire1") == 1 && PlayerStats.instance.energy > 0)
         {
-            
 
+            rb.velocity = Vector3.zero;
             rdanim = Random.Range(0, 101);
 
             if (rdanim >= 51 && !isAttack)
@@ -134,7 +136,7 @@ public class PlayerController : MonoBehaviour
         float velocity;
         
 
-        if (move.x != 0 || move.z != 0 )
+        if (move.z != 0 )
         {
             IsWalking = true;
 
@@ -151,6 +153,7 @@ public class PlayerController : MonoBehaviour
                 velocity = PlayerStats.instance.speed;
 
                 IsRunning = false;
+
 
                 rb.velocity = transform.forward * move.z * velocity;
 

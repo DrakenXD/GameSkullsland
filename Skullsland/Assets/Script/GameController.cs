@@ -45,11 +45,11 @@ public class GameController : MonoBehaviour
 
     [Header("Time Player Moving")]
     public float M_timefood;
-    private float M_TF;
+    [SerializeField] private float M_TF;
     public float M_timethirst;
-    private float M_TT;
+    [SerializeField] private float M_TT;
     public float M_timeEnergy;
-    private float M_TE;
+    [SerializeField] private float M_TE;
 
     [Header("Time Player Stopped")]
     public float S_timefood;
@@ -75,6 +75,7 @@ public class GameController : MonoBehaviour
 
     [Header("Esc options")]
     public GameObject esc;
+    public static bool HaveEsc= true;
     public bool activate = false;
 
     public static bool usingController;
@@ -116,8 +117,8 @@ public class GameController : MonoBehaviour
         Hour();
         MouseOrController();
         TimeUpdate();
-       
 
+        if(HaveEsc)Esc();
     }
     
     void TimeUpdate()
@@ -179,16 +180,20 @@ public class GameController : MonoBehaviour
         if (PlayerController.IsWalking )
         {
 
-            M_TF -= Time.deltaTime;
-            M_TT -= Time.deltaTime;
-            M_TE -= Time.deltaTime;
+            if (PlayerController.IsRunning)
+            {
+                M_TF -= Time.deltaTime * 1.5f;
+                M_TT -= Time.deltaTime * 1.5f;
+                M_TE -= 0.15f;
 
-        }
-        else if (PlayerController.IsRunning)
-        {
-            M_TF -= Time.deltaTime * 1.5f;
-            M_TT -= Time.deltaTime * 1.5f;
-            M_TE -= 0.2f;
+            }
+            else
+            {
+                M_TF -= Time.deltaTime;
+                M_TT -= Time.deltaTime;
+                M_TE -= Time.deltaTime;
+            }
+           
 
         }
         else
@@ -257,12 +262,14 @@ public class GameController : MonoBehaviour
     }
     private void Energy()
     {
+        // Gasta energia energia
         if (M_TE <= 0 && PlayerStats.instance.food > 0 && PlayerStats.instance.thirst > 0)
         {
             PlayerStats.instance.energy -= M_LostAmountEnergy;
 
             M_TE = M_timeEnergy;
         }
+        // Regenera energia
         if (S_TE <= 0 && PlayerStats.instance.food > 0 && PlayerStats.instance.thirst > 0)
         {
             PlayerStats.instance.energy += S_AmountRestoredEnergy;
