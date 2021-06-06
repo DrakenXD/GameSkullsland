@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 342
   name: Carne
-  icon: {fileID: 21300000, guid: 49ba70c3a8ff99f448eacd55997a284a, type: 3}
+  icon: {fileID: 21300000, guid: 3e2ddaf3cc0311848af717712b021837, type: 3}
   description: Carne de primeira qualidade
   prefabItem: {fileID: 3726647099984639973, guid: e17b411ac87795a4d9dadf4822576835,
     type: 3}
