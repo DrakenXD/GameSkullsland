@@ -39,14 +39,21 @@ public class MakingItem : MonoBehaviour
         {
             activate = true;
             ActivateCraftUI.SetActive(true);
-            
-            UpdateUISlotCraft();
+           
         }else if (Input.GetKeyDown(KeyCode.E) && activate || Input.GetKeyDown(KeyCode.Joystick1Button3) && activate)
         {
             activate = false;
             ActivateCraftUI.SetActive(false);
 
         }
+
+
+
+    }
+
+    private void LateUpdate()
+    {
+        UpdateUISlotCraft();
 
     }
 

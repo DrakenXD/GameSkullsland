@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44ff3cc17682f664da8ff7d72c1b322f, type: 3}
-  m_Name: "po\xE7\xE3o"
+  m_Name: CopoComAgua
   m_EditorClassIdentifier: 
   ID: 1
-  name: "po\xE7\xE3o"
-  icon: {fileID: 21300000, guid: 29241eaeea36351418a3495c08305272, type: 3}
+  name: CanecaComAgua
+  icon: {fileID: 21300000, guid: 49ba70c3a8ff99f448eacd55997a284a, type: 3}
+  description: Um Copo de agua
+  prefabItem: {fileID: 0}
   isDefaultItem: 0
-  MaximunStacks: 2
+  MaximunStacks: 1
   itemtypes: 0
-  LifeRegen: 50
+  LifeRegen: 0
   FoodRegen: 0
-  ThirstRegen: 0
+  ThirstRegen: 40

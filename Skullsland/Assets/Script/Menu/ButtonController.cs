@@ -40,6 +40,21 @@ public class ButtonController : MonoBehaviour,IPointerEnterHandler,IPointerClick
     {
         Application.Quit();
     }
+    public void ButtonClick()
+    {
+        if (start)
+        {
+            ButtonStart();
+        }
+        else if (options)
+        {
+            ButtonOptions();
+        }
+        else if (quit)
+        {
+            ButtonQuit();
+        }
+    }
 
     public void ButtonSizeNormal()
     {
@@ -52,7 +67,7 @@ public class ButtonController : MonoBehaviour,IPointerEnterHandler,IPointerClick
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && Active)
+        if (Input.GetKeyDown(KeyCode.Escape) && Active || Input.GetKeyDown(KeyCode.Joystick1Button7) && Active)
         {
             GameController.HaveEsc = true;
             Disable.SetActive(false);
@@ -64,17 +79,7 @@ public class ButtonController : MonoBehaviour,IPointerEnterHandler,IPointerClick
     {
         ButtonSizeNormal();
 
-        if (start)
-        {
-            ButtonStart();
-        }else if (options)
-        {
-            ButtonOptions();
-        }
-        else if (quit)
-        {
-            ButtonQuit();
-        }
+        ButtonClick();
 
     }
     public void OnPointerEnter(PointerEventData eventData)

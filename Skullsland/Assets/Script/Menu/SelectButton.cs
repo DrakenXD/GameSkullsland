@@ -24,7 +24,7 @@ public class SelectButton : MonoBehaviour
         
 
         ChooseButton();
-
+        PressButton();
 
     }
 
@@ -75,6 +75,9 @@ public class SelectButton : MonoBehaviour
     }
     public void PressButton()
     {
-
+        if (Input.GetKeyDown(KeyCode.Joystick1Button7))
+        {
+            buttonController[index].ButtonClick();
+        }
     }
 }

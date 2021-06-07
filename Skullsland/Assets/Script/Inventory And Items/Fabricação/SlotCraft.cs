@@ -6,14 +6,18 @@ using TMPro;
 
 public class SlotCraft : MonoBehaviour
 {
+    public TextMeshProUGUI TxtName;
+
     [Header("Item 1")]
     private Item item1;
     public Image imageItem1;
     public TextMeshProUGUI amountItem1;
+
     [Header("Item 2")]
     private Item item2;   
     public Image imageItem2;
     public TextMeshProUGUI amountItem2;
+
     [Header("Item Result")]
     private Item itemresult;
     public Image imageresult;
@@ -24,6 +28,8 @@ public class SlotCraft : MonoBehaviour
         item1 = craft.item1;
         item2 = craft.item2;
         itemresult = craft.itemResult;
+
+        TxtName.SetText(""+craft.Name);
 
         amountItem1.SetText("" + craft.amountItem1);
         amountItem2.SetText("" + craft.amountItem2);
