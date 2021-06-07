@@ -7,12 +7,14 @@ public class SelectButton : MonoBehaviour
     public Transform transformParent;
     public int MaxIndex;                       //numero total de buttons
     public static int index;                   //numero em que está sendo usado
-    public int test;
+    private float maxtime = .2f;
+    private float time;
 
     public ButtonController[] buttonController;
     // Start is called before the first frame update
     void Start()
     {
+        buttonController = transformParent.GetComponentsInChildren<ButtonController>();
         MaxIndex = buttonController.Length - 1;
     }
 
@@ -23,35 +25,56 @@ public class SelectButton : MonoBehaviour
 
         ChooseButton();
 
-        test = index;
 
     }
 
     public void ChooseButton()
     {
-
-        if (Input.GetKeyDown(KeyCode.Joystick1Button5) || Input.GetKey(KeyCode.UpArrow))
+        if (time <= 0) 
         {
-            buttonController[index].ButtonSizeNormal();
-
-            if (index > MaxIndex)
+            if (-Input.GetAxisRaw("Vertical") >= 0.1f || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                index = 0;
-            }else index++;
+                buttonController[index].ButtonSizeNormal();
 
-            buttonController[index].ButtonSizeModify();
-        }
-        else if (Input.GetKeyDown(KeyCode.Joystick1Button4) || Input.GetKey(KeyCode.DownArrow))
-        {
-            buttonController[index].ButtonSizeNormal();
+                index++;
+                if (index > MaxIndex)
+                {
+                    index = 0;
+                    buttonController[index].ButtonSizeModify();
+                }
+                else
+                {
 
-            if (index < 0)
-            {
-                index = MaxIndex;
+                    buttonController[index].ButtonSizeModify();
+                }
+
+                time = maxtime;
             }
-            else index--;
+            else if(-Input.GetAxisRaw("Vertical") <= -0.1f || Input.GetKeyDown(KeyCode.DownArrow))
+            { 
+                buttonController[index].ButtonSizeNormal();
 
-            buttonController[index].ButtonSizeModify();
-        }
+                index--;
+                if (index < 0)
+                {
+                    index = MaxIndex;
+                    buttonController[index].ButtonSizeModify();
+                }
+                else
+                {
+
+                    buttonController[index].ButtonSizeModify();
+                }
+
+                time = maxtime;
+            }
+
+            
+
+        }else time -= Time.deltaTime;     
+    }
+    public void PressButton()
+    {
+
     }
 }

@@ -45,11 +45,11 @@ public class GameController : MonoBehaviour
 
     [Header("Time Player Moving")]
     public float M_timefood;
-    [SerializeField] private float M_TF;
+    private float M_TF;
     public float M_timethirst;
-    [SerializeField] private float M_TT;
+    private float M_TT;
     public float M_timeEnergy;
-    [SerializeField] private float M_TE;
+    private float M_TE;
 
     [Header("Time Player Stopped")]
     public float S_timefood;
@@ -71,7 +71,8 @@ public class GameController : MonoBehaviour
 
     int T_rdValue;
     bool T_updatevalue;
-    public float T_timerupdate;
+    public float TimeUpdateGraus;
+    private float T_timerupdate;
 
     [Header("Esc options")]
     public GameObject esc;
@@ -290,7 +291,7 @@ public class GameController : MonoBehaviour
         {
             T_rdValue = Random.Range(0, 101);
             T_updatevalue = true;
-            T_timerupdate = tgsky.dayMinutesDuration;
+            T_timerupdate = TimeUpdateGraus;
             
         }
 
@@ -357,10 +358,10 @@ public class GameController : MonoBehaviour
             {
 
 
-                PlayerStats.instance.Graus -= 4;
+                PlayerStats.instance.Graus -= 10;
             }else if (PlayerStats.instance.Graus < PlayerStats.instance.maxcold - 1 && !winter)
             {
-                PlayerStats.instance.Graus += 4;
+                PlayerStats.instance.Graus += 10;
             }
          
 
@@ -375,11 +376,11 @@ public class GameController : MonoBehaviour
 
                 if (EffectCold.alpha > 0)
                 {
-                    EffectCold.alpha -= 0.050f;
+                    EffectCold.alpha -= 0.1f;
                 }
                 else if (EffectHot.alpha > 0)
                 {
-                    EffectHot.alpha -= 0.050f;
+                    EffectHot.alpha -= 0.1f;
                 }
 
                 UI_bartemp.color = Color.yellow;
@@ -393,7 +394,7 @@ public class GameController : MonoBehaviour
 
                 if (EffectHot.alpha < .5f)
                 {
-                    EffectHot.alpha += 0.050f;
+                    EffectHot.alpha += 0.1f;
                 }
                 else
                 {
@@ -404,7 +405,7 @@ public class GameController : MonoBehaviour
 
                 if (EffectCold.alpha > 0)
                 {
-                    EffectCold.alpha -= 0.050f;
+                    EffectCold.alpha -= 0.1f;
                 }
 
                 //ganha uma sede(ja colocado)
@@ -419,7 +420,7 @@ public class GameController : MonoBehaviour
 
                 if (EffectCold.alpha < .5f)
                 {
-                    EffectCold.alpha += 0.050f;
+                    EffectCold.alpha += 0.1f;
                 }
                 else EffectCold.alpha = 0.5f;
 
@@ -427,7 +428,7 @@ public class GameController : MonoBehaviour
 
                 if (EffectHot.alpha > 0)
                 {
-                    EffectHot.alpha -= 0.050f;
+                    EffectHot.alpha -= 0.1f;
                 }
 
                 PlayerStats.instance.speed = 5;
