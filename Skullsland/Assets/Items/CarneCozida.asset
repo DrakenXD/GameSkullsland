@@ -21,6 +21,6 @@ MonoBehaviour:
   isDefaultItem: 0
   MaximunStacks: 5
   itemtypes: 0
-  LifeRegen: 0
-  FoodRegen: 0
-  ThirstRegen: 0
+  LifeRegen: 20
+  FoodRegen: 40
+  ThirstRegen: 10

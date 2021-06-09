@@ -30,34 +30,40 @@ public class EnemyRanged : EnemyController
 
         nav.SetDestination(transform.position);
 
-        anim.SetBool("Attack", false);
-
+        
+        
     }
-    public override void DeathAnim()
+    public override void FollowTarget()
     {
-        base.DeathAnim();
-        Death();
+        base.FollowTarget();
+        anim.Play("Walk");
     }
-   
+    public override void Death()
+    {
+        base.Death();
+
+        anim.Play("Death");
+    }
+
 
     public void Shoot()
     {
-        
         NewBullet(bullet);
+        anim.Play("State");
     }
   
     public override void LoadingAttack()
     {
         base.LoadingAttack();
-        anim.SetBool("Attack",true);
+        anim.Play("Attack");
     }
     public void NewBullet(GameObject _bullet)
     {
-        Rigidbody rb = Instantiate(_bullet, pointShoot.position, Quaternion.identity).GetComponent<Rigidbody>();
+        GameObject Clone = Instantiate(_bullet, pointShoot.position, Quaternion.identity);
 
+        Clone.GetComponent<BulletEnemy>().damage = damage;
 
-        
-        rb.AddForce(transform.forward*bulletvelocity, ForceMode.Impulse);
+        Clone.GetComponent<Rigidbody>().AddForce(transform.forward*bulletvelocity, ForceMode.Impulse);
     }
 
     

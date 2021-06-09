@@ -17,6 +17,12 @@ public class EnemyMelee : EnemyController
     {
         base.Update();
     }
+
+    public override void Death()
+    {
+        base.Death();
+        anim.Play("Death");
+    }
     public override void Attack()
     {
         if (AttackAuto)
@@ -47,12 +53,7 @@ public class EnemyMelee : EnemyController
         base.LoadingAttack();
         anim.Play("Attack");
     }
-    public override void DeathAnim()
-    {
-        anim.SetBool("IsDeath",true);
-        
-
-    }
+   
 
     public override void OnDrawGizmosSelected()
     {

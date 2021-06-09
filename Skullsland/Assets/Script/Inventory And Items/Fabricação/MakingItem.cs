@@ -6,9 +6,8 @@ using UnityEngine;
 
 public class MakingItem : MonoBehaviour
 {
-    public GameObject ActivateCraftUI;
     public static bool activate = false;
-
+    public Animator anim;
     public Transform pointDrop;
 
     
@@ -37,13 +36,13 @@ public class MakingItem : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E) && !activate || Input.GetKeyDown(KeyCode.Joystick1Button3) && !activate)
         {
+            anim.Play("Right");
             activate = true;
-            ActivateCraftUI.SetActive(true);
            
         }else if (Input.GetKeyDown(KeyCode.E) && activate || Input.GetKeyDown(KeyCode.Joystick1Button3) && activate)
         {
+            anim.Play("Left");
             activate = false;
-            ActivateCraftUI.SetActive(false);
 
         }
 

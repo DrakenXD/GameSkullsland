@@ -89,13 +89,17 @@ public class EnemyController : MonoBehaviour
                 LoadingAttack();
                 break;
             case EnemyState.Death:
-                DeathAnim();
+                Death();
                 nav.SetDestination(transform.position);
                 break;
             case EnemyState.Attack:
                 Attack();
                 break;
         }
+    }
+    public virtual void Idle()
+    {
+
     }
     public virtual void LoadingAttack()
     {
@@ -112,7 +116,7 @@ public class EnemyController : MonoBehaviour
 
         if (state == EnemyState.Death)
         {
-            Debug.Log("Morreu");
+            state = EnemyState.Death;
         }
         else
         {
@@ -152,13 +156,13 @@ public class EnemyController : MonoBehaviour
 
         VerifyState();
     }
-    public virtual void DeathAnim()
-    {
-        coll.enabled = false;
-        rig.isKinematic = true;
-    }
+
     public virtual void Death()
     {
+
+        coll.enabled = false;
+        rig.isKinematic = true;
+
         while (rdDrop > amountdrop)
         {
             amountdrop++;
@@ -171,7 +175,7 @@ public class EnemyController : MonoBehaviour
         }
         if (amountdrop == rdDrop)
         {
-            Destroy(gameObject, 1.1f);
+            Destroy(gameObject, 3f);
         }
     }
     private bool IsAlive()

@@ -1871,10 +1871,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9061023983809707622}
+  - component: {fileID: 8806085603239478643}
   - component: {fileID: 8806085603239478642}
   - component: {fileID: 8806085603239478641}
   - component: {fileID: 8806085603239478645}
-  - component: {fileID: 8806085603239478643}
   - component: {fileID: 8806085603239478640}
   m_Layer: 10
   m_Name: Enemy_Goblin
@@ -1908,6 +1908,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 182.43, z: 0}
+--- !u!114 &8806085603239478643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8571733151069889756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5919bfc95f9ea9241b2a13228ca30d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLife: 40
+  damage: 10
+  UI_Life: {fileID: 8806085604856168715}
+  UI_Damage: {fileID: 8806085604340343872}
+  prefabtextdamage: {fileID: 1246810773481554150, guid: ca866cd04fc85724bac68fa9c424e7cf,
+    type: 3}
+  textDamagepos: {fileID: 8806085604045148519}
+  timeAttack: 1
+  radiusAttack: 2
+  AttackPoint: {fileID: 2939554084121387563}
+  layerAttack:
+    serializedVersion: 2
+    m_Bits: 256
+  InRadius: 0
+  state: 0
+  distance: 0
+  MaxRange: 30
+  MinRange: 2
+  items:
+  - {fileID: 7087761964558339691, guid: 285f6d319a8458043b36c443cbbb0ed4, type: 3}
+  MaxAmountDrop: 1
+  amountdrop: 0
+  AttackAuto: 0
 --- !u!54 &8806085603239478642
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1957,41 +1992,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8806085603239478643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8571733151069889756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5919bfc95f9ea9241b2a13228ca30d29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxLife: 40
-  damage: 10
-  UI_Life: {fileID: 8806085604856168715}
-  UI_Damage: {fileID: 8806085604340343872}
-  prefabtextdamage: {fileID: 1246810773481554150, guid: ca866cd04fc85724bac68fa9c424e7cf,
-    type: 3}
-  textDamagepos: {fileID: 8806085604045148519}
-  timeAttack: 1
-  radiusAttack: 2
-  AttackPoint: {fileID: 2939554084121387563}
-  layerAttack:
-    serializedVersion: 2
-    m_Bits: 256
-  InRadius: 0
-  state: 0
-  distance: 0
-  MaxRange: 30
-  MinRange: 2
-  items:
-  - {fileID: 7087761964558339691, guid: 285f6d319a8458043b36c443cbbb0ed4, type: 3}
-  MaxAmountDrop: 1
-  amountdrop: 0
-  AttackAuto: 0
 --- !u!195 &8806085603239478640
 NavMeshAgent:
   m_ObjectHideFlags: 0
