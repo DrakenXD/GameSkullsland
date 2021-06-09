@@ -59,14 +59,14 @@ public class InventoryController : MonoBehaviour
             ChooseSlotJoystick();
             UsingItemSlotJoystick();
             ChooseSlotKeyboardAndScroll();
-            viewingDescription();
+            viewDescription();
 
             //HandWithObject.instance.ItemInHand(index);
         }
     }
 
 
-    void viewingDescription()
+    void viewDescription()
     {
         if (lastindex!=index )
         {

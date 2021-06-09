@@ -9,18 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ff3cc17682f664da8ff7d72c1b322f, type: 3}
-  m_Name: Carne
+  m_Script: {fileID: 11500000, guid: f83333c50113bbb41a31233b6ecef8ac, type: 3}
+  m_Name: CarneCrua
   m_EditorClassIdentifier: 
-  ID: 342
-  name: Carne
+  ID: 5454
+  name: CarneCrua
   icon: {fileID: 21300000, guid: 3e2ddaf3cc0311848af717712b021837, type: 3}
-  description: Carne de primeira qualidade
-  prefabItem: {fileID: 3726647099984639973, guid: e17b411ac87795a4d9dadf4822576835,
+  description: "Se colocar na fogueira talvez d\xEA um belo rango"
+  prefabItem: {fileID: 919132149155446097, guid: 12a4eb6841ce83049b4ac271913b14f0,
     type: 3}
   isDefaultItem: 0
   MaximunStacks: 5
-  itemtypes: 0
-  LifeRegen: 10
-  FoodRegen: 20
-  ThirstRegen: 10
+  itemtypes: 1

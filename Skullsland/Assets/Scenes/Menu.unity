@@ -1275,7 +1275,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785715, y: 1}
+    m_SensorSize: {x: 1.7746478, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6683,10 +6683,20 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 12a4eb6841ce83049b4ac271913b14f0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f81fe9cf767fae74da53d183bc3301bd, type: 2}
     - target: {fileID: 919132149155446097, guid: 12a4eb6841ce83049b4ac271913b14f0,
         type: 3}
       propertyPath: m_Name
       value: CARNE2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 12a4eb6841ce83049b4ac271913b14f0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12a4eb6841ce83049b4ac271913b14f0, type: 3}
@@ -8797,6 +8807,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1016570949}
     m_Modifications:
+    - target: {fileID: 267828343, guid: cfc153f94463d4741abeb8a087471792, type: 3}
+      propertyPath: m_Intensity
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 5807301046057581577, guid: cfc153f94463d4741abeb8a087471792,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -28,8 +28,6 @@ public class GameController : MonoBehaviour
     public float C_H_TimeToLoseLife;
     private float C_H_T_T_L_Life;
 
-
-
     [Header("Time to restore life")]
     public int AmountRestoreLife;
     public float TimeRestoreLife;
@@ -69,6 +67,10 @@ public class GameController : MonoBehaviour
     public CanvasGroup EffectCold;
     public CanvasGroup EffectHot;
 
+    [Header("UI DaysCount")]
+    public TextMeshProUGUI TxtDays;
+    public Animator animTxtDays;
+
     int T_rdValue;
     bool T_updatevalue;
     public float TimeUpdateGraus;
@@ -86,6 +88,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
 
         if (instance != null)
         {
@@ -96,6 +99,9 @@ public class GameController : MonoBehaviour
 
         tgsky = GameObject.FindGameObjectWithTag("Sun").GetComponent<TGSky>();
         stats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+
+
+        animTxtDays.Play("DaysCount");
 
         //movendo
         M_TF = M_timefood;
@@ -118,8 +124,9 @@ public class GameController : MonoBehaviour
         Hour();
         MouseOrController();
         TimeUpdate();
+        CountDays();
 
-        if(HaveEsc)Esc();
+        if (HaveEsc)Esc();
     }
     
     void TimeUpdate()
@@ -444,17 +451,23 @@ public class GameController : MonoBehaviour
             Timer();
         }
        
+        
+
+       
+      
+        
+    }
+    public void CountDays()
+    {
+        
         //contagem de dias
         if (!TGSky.isNight)
         {
 
-            
-
-
             if (count)
             {
                 days++;
-                
+
                 DAYSTOTAL++;
 
                 if (days >= dayForWinter && days <= WinterDays)
@@ -473,10 +486,15 @@ public class GameController : MonoBehaviour
                     summer = false;
                     days = 0;
                 }
-                else if (days < WinterDays) 
+                else if (days < WinterDays)
                 {
                     winter = false;
                 }
+
+
+                TxtDays.SetText("Day "+ DAYSTOTAL);
+
+                animTxtDays.Play("DaysCount");
 
                 count = false;
             }
@@ -485,11 +503,9 @@ public class GameController : MonoBehaviour
         else
         {
             count = true;
-        }
 
-       
-      
-        
+            animTxtDays.Play("State");
+        }
     }
     public void AddHeat(int value)
     {
