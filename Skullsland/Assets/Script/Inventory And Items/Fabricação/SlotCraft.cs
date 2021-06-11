@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
-public class SlotCraft : MonoBehaviour
+public class SlotCraft : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public int IdButton;
     public TextMeshProUGUI TxtName;
 
     [Header("Item 1")]
@@ -22,6 +24,11 @@ public class SlotCraft : MonoBehaviour
     private Item itemresult;
     public Image imageresult;
     public TextMeshProUGUI amountItemResult;
+
+    [Header("Size Button")]
+    public Transform icon;
+    public Vector3 sizeBig;
+    private Vector3 sizeNormal = new Vector3(1, 1, 1);
 
     public void AddItemSlot(Craft craft)
     {
@@ -40,5 +47,23 @@ public class SlotCraft : MonoBehaviour
         imageresult.sprite=craft.itemResult.icon;
     }
 
-   
+    public void ButtonSizeNormal()
+    {
+        icon.localScale = sizeNormal;
+    }
+    public void ButtonSizeModify()
+    {
+        icon.localScale = sizeBig;
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ButtonSizeModify();
+
+        SelectButton.index = IdButton;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ButtonSizeNormal();
+    }
 }

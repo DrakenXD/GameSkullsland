@@ -210,6 +210,8 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: be0f968f080c0814badd65ae1365a04f, type: 2}
   nameItem: {fileID: 685287703734420560}
   setUIName: {fileID: 4534199162084114079}
+  SfxPickUp: {fileID: 5607087354679648930, guid: 2cee439a5cd98e64bad6a6dd287f3906,
+    type: 3}
   MouseUP: 0
 --- !u!135 &1638908259736883486
 SphereCollider:

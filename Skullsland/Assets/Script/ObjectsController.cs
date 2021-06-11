@@ -13,7 +13,7 @@ public class ObjectsController : MonoBehaviour
     public int amount;
 
     [Header("Prefab item and pointDrop")]
-    public GameObject prefabitem; //item que vai cair
+    public GameObject[] prefabitem; //item que vai cair
     public Transform[] pointDrop; //local para cair os itens
     public int indexpointdrop;
     // Start is called before the first frame update
@@ -57,8 +57,8 @@ public class ObjectsController : MonoBehaviour
                 indexpointdrop = 0;
             }
 
-
-            Instantiate(prefabitem, pointDrop[indexpointdrop].position, Quaternion.identity);
+            int i = Random.Range(0, prefabitem.Length);
+            Instantiate(prefabitem[i], pointDrop[indexpointdrop].position, Quaternion.identity);
 
             amount++;
         }

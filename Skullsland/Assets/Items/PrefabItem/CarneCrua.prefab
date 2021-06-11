@@ -350,6 +350,8 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: cfde5db88ed531842bbbcc20d320701a, type: 2}
   nameItem: {fileID: 3726647098552347457}
   setUIName: {fileID: 3726647099289126628}
+  SfxPickUp: {fileID: 5607087354679648930, guid: 2cee439a5cd98e64bad6a6dd287f3906,
+    type: 3}
   MouseUP: 0
 --- !u!54 &3726647099984639995
 Rigidbody:

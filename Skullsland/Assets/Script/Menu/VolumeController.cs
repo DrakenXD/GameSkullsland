@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEditor;
 
 public class VolumeController : MonoBehaviour
 {
-    [SerializeField] private Slider MusicvolumeSlider = null;
-    [SerializeField] private AudioMixer MusicMixer;
-    [SerializeField] private Slider SoundEffectvolumeSlider = null;
-    [SerializeField] private AudioMixer SoundEffectMixer;
+    public Slider MusicvolumeSlider = null;
+    public AudioMixer MusicMixer;
+    public Slider SoundEffectvolumeSlider = null;
+    public AudioMixer SoundEffectMixer;
 
  
     // Start is called before the first frame update

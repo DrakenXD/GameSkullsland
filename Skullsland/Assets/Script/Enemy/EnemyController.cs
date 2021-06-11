@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     public Transform textDamagepos;
 
     [Header("Attack")]
+    public bool Attaking;
     public float timeAttack;
     protected float T_A;
     public float radiusAttack;
@@ -43,7 +44,7 @@ public class EnemyController : MonoBehaviour
     protected int rdDrop;
 
     protected Animator anim;
-    protected NavMeshAgent nav;
+    public NavMeshAgent nav;
     protected Transform targetPlayer;
     protected Rigidbody rig;
     protected Collider coll;
@@ -56,7 +57,6 @@ public class EnemyController : MonoBehaviour
         rdDrop = Random.Range(1, MaxAmountDrop);
 
         anim = GetComponent<Animator>();
-        nav = GetComponent<NavMeshAgent>();
         rig = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
 
@@ -66,19 +66,22 @@ public class EnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    public virtual void Update()
+    protected virtual void Update()
     {
         ControlState();
 
         if(was_attacked) UIDamageSystem();
+
+        
     }
 
+   
     public virtual void VerifyState()
     {
         switch (state)
         {
             case EnemyState.Stop:
-                nav.SetDestination(transform.position);
+                Idle();
                 break;
             case EnemyState.Follow:
                 FollowTarget();
@@ -99,7 +102,8 @@ public class EnemyController : MonoBehaviour
     }
     public virtual void Idle()
     {
-
+        nav.SetDestination(transform.position);
+       
     }
     public virtual void LoadingAttack()
     {
@@ -120,12 +124,13 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            if (InRadius)
+            if (Attaking)
             {
                 if (T_A <= 0)
                 {
                     T_A = timeAttack;
                     state = EnemyState.Attack;
+                   
                 }
                 else
                 {
@@ -135,23 +140,32 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                if (distance <= MaxRange)
+                if (distance <= radiusAttack)
                 {
-                    if (distance >= MinRange)
+                    Attaking = true;
+                }
+                else
+                {
+                    if (distance < MaxRange + 1)
                     {
-                        state = EnemyState.Follow;
+                        if (distance > MinRange)
+                        {
+                            state = EnemyState.Follow;
+                        }
+                        else
+                        {
+                            state = EnemyState.Stop;
+                        }
+
                     }
                     else
                     {
                         state = EnemyState.Stop;
                     }
-
-                }
-                else
-                {
-                    state = EnemyState.Stop;
                 }
             }
+           
+
         }
 
         VerifyState();
@@ -199,6 +213,7 @@ public class EnemyController : MonoBehaviour
                 hitPlayer.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
             }
         }
+        Attaking = false;
     }
     public virtual void TakeDamage(int dmg)
     {
@@ -209,9 +224,11 @@ public class EnemyController : MonoBehaviour
         txt.GetComponent<TextMesh>().text = ""+dmg;
        
         UI_Life.fillAmount = Life / maxLife;
+
         was_attacked = true;
 
         IsAlive();
+
     }
     public void UIDamageSystem()
     {
@@ -231,6 +248,7 @@ public class EnemyController : MonoBehaviour
     public virtual void FollowTarget()
     {
         nav.SetDestination(targetPlayer.position);
+        transform.LookAt(targetPlayer);
     }
     public enum EnemyState
     {

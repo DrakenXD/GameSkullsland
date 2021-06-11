@@ -17,7 +17,7 @@ public class EnemyRanged : EnemyController
     }
 
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
         
@@ -32,6 +32,11 @@ public class EnemyRanged : EnemyController
 
         
         
+    }
+    public override void Idle()
+    {
+        base.Idle();
+        anim.Play("Idle");
     }
     public override void FollowTarget()
     {
@@ -49,9 +54,14 @@ public class EnemyRanged : EnemyController
     public void Shoot()
     {
         NewBullet(bullet);
+      
+    }
+    public void AttackCancelAnim()
+    {
+        Attaking = false;
         anim.Play("State");
     }
-  
+
     public override void LoadingAttack()
     {
         base.LoadingAttack();

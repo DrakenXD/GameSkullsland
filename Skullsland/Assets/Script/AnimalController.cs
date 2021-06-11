@@ -30,7 +30,7 @@ public class AnimalController : MonoBehaviour
     protected float T_S;
 
 
-    protected NavMeshAgent navagent;
+    public NavMeshAgent navagent;
     private bool was_attacked;
 
     // Start is called before the first frame update
@@ -39,7 +39,6 @@ public class AnimalController : MonoBehaviour
         Life = MaxLife;
         T_N_T = MaxTimeNextTarget;
 
-        navagent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame

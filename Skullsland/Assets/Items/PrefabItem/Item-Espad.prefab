@@ -108,6 +108,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: f1dfffa21a13ba747818d5a10f807a9e, type: 2}
+  nameItem: {fileID: 0}
+  setUIName: {fileID: 0}
+  SfxPickUp: {fileID: 5607087354679648930, guid: 2cee439a5cd98e64bad6a6dd287f3906,
+    type: 3}
+  MouseUP: 0
 --- !u!54 &-5833058290321343577
 Rigidbody:
   m_ObjectHideFlags: 0

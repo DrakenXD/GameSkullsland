@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 3726647099984639995}
   - component: {fileID: 2913595647154081462}
   m_Layer: 11
-  m_Name: Carne
+  m_Name: CarneCozida
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,6 +350,8 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 1aabb7391c0f60e46be37ea9e45967dd, type: 2}
   nameItem: {fileID: 3726647098552347457}
   setUIName: {fileID: 3726647099289126628}
+  SfxPickUp: {fileID: 5607087354679648930, guid: 2cee439a5cd98e64bad6a6dd287f3906,
+    type: 3}
   MouseUP: 0
 --- !u!54 &3726647099984639995
 Rigidbody:

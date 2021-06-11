@@ -19,7 +19,10 @@ public class MakingItem : MonoBehaviour
     SlotCraft[] slots;
 
     public int index;
-    public int maxindex;
+    public int MaxIndex;
+
+    private float maxtime = .2f;
+    private float time;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,8 @@ public class MakingItem : MonoBehaviour
        
 
         slots = itemsParent.GetComponentsInChildren<SlotCraft>();
+
+        MaxIndex = slots.Length - 1;
         
     }
 
@@ -45,8 +50,8 @@ public class MakingItem : MonoBehaviour
             activate = false;
 
         }
-
-
+        ChooseSlotJoystick();
+        PressButton();
 
     }
 
@@ -67,6 +72,59 @@ public class MakingItem : MonoBehaviour
            
         }
         
+    }
+    public void  ChooseSlotJoystick()
+    {
+        if (time <= 0)
+        {
+            if (Input.GetAxisRaw("Stick Right V") >= 0.1f || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                slots[index].ButtonSizeNormal();
+
+                index++;
+                if (index > MaxIndex)
+                {
+                    index = 0;
+                    slots[index].ButtonSizeModify();
+                }
+                else
+                {
+
+                    slots[index].ButtonSizeModify();
+                }
+
+                time = maxtime;
+            }
+            else if (Input.GetAxisRaw("Stick Right V") <= -0.1f || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                slots[index].ButtonSizeNormal();
+
+                index--;
+                if (index < 0)
+                {
+                    index = MaxIndex;
+                    slots[index].ButtonSizeModify();
+                }
+                else
+                {
+
+                    slots[index].ButtonSizeModify();
+                }
+
+                time = maxtime;
+            }
+
+
+
+        }
+        else time -= Time.deltaTime;
+    }
+    public void PressButton()
+    {
+        if (Input.GetKeyDown(KeyCode.Joystick1Button2))
+        {
+            CheckingItem(index);
+        }
     }
 
     public void CheckingItem(int idSlotCraft)

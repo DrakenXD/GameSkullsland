@@ -8,6 +8,8 @@ public class ItemPickup : MonoBehaviour
     public Item item;
     public TextMeshProUGUI nameItem;
     public GameObject setUIName;
+
+    public GameObject SfxPickUp;
     public bool MouseUP;
     // Start is called before the first frame update
     void Start()
@@ -36,8 +38,11 @@ public class ItemPickup : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            GameObject sfx = Instantiate(SfxPickUp, transform.position, Quaternion.identity);
             bool wasPickedUp = Inventory.instance.AddItem(item);
             if (wasPickedUp)
+                Destroy(sfx,1f);
+                
                 Destroy(gameObject);
         }
     }

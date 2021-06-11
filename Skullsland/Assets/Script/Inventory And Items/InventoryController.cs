@@ -54,6 +54,11 @@ public class InventoryController : MonoBehaviour
             }
         }
 
+        if (slots[index].stack <= 0)
+        {
+            slots[index].CloseDescription();
+        }
+
         if (!MakingItem.activate)
         {
             ChooseSlotJoystick();

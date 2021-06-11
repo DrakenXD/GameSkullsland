@@ -207,6 +207,8 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 410315b953a1b6840802848beea85cf6, type: 2}
   nameItem: {fileID: 6305459613416395227}
   setUIName: {fileID: 4178560652973869542}
+  SfxPickUp: {fileID: 5607087354679648930, guid: 2cee439a5cd98e64bad6a6dd287f3906,
+    type: 3}
   MouseUP: 0
 --- !u!136 &4889742902742917312
 CapsuleCollider:

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7727163785962271111}
   m_Layer: 0
   m_Name: SUN
-  m_TagString: Untagged
+  m_TagString: Sun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3221177544499009498}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000002, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3221177545867610262}
   m_Father: {fileID: 0}
@@ -45,7 +45,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.09803922, g: 0.15686275, b: 0.25490198, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.15
   m_Range: 10
   m_SpotAngle: 30
@@ -55,7 +55,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.15045099
+    m_Strength: 1
     m_Bias: 0.2
     m_NormalBias: 0.15
     m_NearPlane: 0.2
@@ -83,7 +83,7 @@ Light:
   m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2049
+    m_Bits: 4294967295
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -161,10 +161,10 @@ MonoBehaviour:
     m_PreInfinity: 1
     m_PostInfinity: 1
     m_RotationOrder: 4
-  hour: 5
+  hour: 7.7
   longitude: -22
   nightDuration: 12
-  dayMinutesDuration: 3
+  dayMinutesDuration: 10
   animate: 1
   nightColor: {r: 0.09803922, g: 0.15686275, b: 0.25490198, a: 1}
   dayColor: {r: 1, g: 1, b: 1, a: 1}
@@ -198,8 +198,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
-  isNight: 1
-  intensity: 0
+  intensity: 1
 --- !u!114 &7727163785962271111
 MonoBehaviour:
   m_ObjectHideFlags: 0

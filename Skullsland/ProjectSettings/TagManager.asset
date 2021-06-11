@@ -11,6 +11,7 @@ TagManager:
   - Animal
   - Sun
   - InventoryController
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Item
   - DestructiveObject
   - Animal
-  - 
+  - Bullet
   - 
   - 
   - 

@@ -190,8 +190,9 @@ MonoBehaviour:
   maxamountdrop: 4
   amountrandom: 0
   amount: 0
-  prefabitem: {fileID: 7087761964558339691, guid: 285f6d319a8458043b36c443cbbb0ed4,
-    type: 3}
+  prefabitem:
+  - {fileID: 7087761964558339691, guid: 285f6d319a8458043b36c443cbbb0ed4, type: 3}
+  - {fileID: 4365077142221915220, guid: 77eaf62ae753d7f4d8fde9e87aa4df26, type: 3}
   pointDrop:
   - {fileID: 6367088255906807464}
   - {fileID: 2239316289999542710}

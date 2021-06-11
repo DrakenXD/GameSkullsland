@@ -37,6 +37,10 @@ public class PlayerController : MonoBehaviour
     public float TimeAttack;
     private float T_Attack;
 
+    [Header("SFX")]
+    public AudioSource[] SFX_AttackPunch;
+    public AudioSource[] SFX_AttackTree;
+
 
 
     private Rigidbody rb;
@@ -82,14 +86,16 @@ public class PlayerController : MonoBehaviour
 
             rb.velocity = Vector3.zero;
             rdanim = Random.Range(0, 101);
-
+            int i = Random.Range(0, SFX_AttackPunch.Length);
             if (rdanim >= 51 && !isAttack)
             {
+                SFX_AttackPunch[i].Play();
                 isAttack = true;
                 anim.SetBool("IsAttaking", isAttack);
             }
             else if(rdanim <=  50 && !isAttack)
             {
+                SFX_AttackPunch[i].Play();
                 isAttack = true;
                 anim.SetBool("IsAttaking2", isAttack);
             }
@@ -288,6 +294,8 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.CompareTag("Object"))
             {
+                int i = Random.Range(0, SFX_AttackTree.Length);
+                SFX_AttackTree[i].Play();
                 hit.gameObject.GetComponent<ObjectsController>().TakeDamage(1);
 
             }

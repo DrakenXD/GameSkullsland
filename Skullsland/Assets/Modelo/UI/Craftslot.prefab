@@ -564,6 +564,8 @@ MonoBehaviour:
   amountItem2: {fileID: 4946842289668226493}
   imageresult: {fileID: 4946842290032041884}
   amountItemResult: {fileID: 4946842288485552217}
+  icon: {fileID: 4946842288914372306}
+  sizeBig: {x: 0, y: 0, z: 0}
 --- !u!1 &4946842288914372307
 GameObject:
   m_ObjectHideFlags: 0
